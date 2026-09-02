@@ -1,0 +1,1875 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>사람이 꽃보다 아름다워 | 대전대신고 × 대전맹학교 장애인식개선 학생동아리</title>
+<meta name="description" content="대전대신고등학교와 대전맹학교가 함께하는 2026학년도 장애인식개선 학생동아리 '사람이 꽃보다 아름다워'. 시각장애 학생 이해와 장애 감수성 향상을 위한 진로 융합 프로젝트.">
+<style>
+/* ─────────────────────────────────────────────────────────────
+   디자인 토큰
+   황토(계족산 황톳길) · 숲(생태) · 점자 6점을 모티프로 한 팔레트
+   ───────────────────────────────────────────────────────────── */
+:root{
+  --clay:#A8492A;      --clay-soft:#C9704B;
+  --forest:#2C5741;    --forest-soft:#4A7C5E;
+  --gold:#B0791E;
+  --ink:#191310;       --ink-2:#4A4038;   --ink-3:#6E6259;
+  --bg:#FBF6EE;        --surface:#FFFFFF; --surface-2:#F4EBDE;
+  --line:#E0D3C0;      --line-strong:#C4B39C;
+  --focus:#0A5AD6;
+  --shadow:0 1px 2px rgba(25,19,16,.06), 0 8px 24px -12px rgba(25,19,16,.18);
+  --radius:14px;
+  --maxw:1120px;
+  --step:1;                       /* 글자 크기 배율 */
+  --fs-base:calc(17px * var(--step));
+  --sans:"Pretendard","Pretendard Variable",-apple-system,BlinkMacSystemFont,"Segoe UI","Malgun Gothic","맑은 고딕","Apple SD Gothic Neo",system-ui,sans-serif;
+}
+/* 다크 모드 */
+:root[data-theme="dark"]{
+  --clay:#E89268;      --clay-soft:#C9704B;
+  --forest:#7FBF9A;    --forest-soft:#4A7C5E;
+  --gold:#E0B45F;
+  --ink:#F5EEE4;       --ink-2:#CBBFB2;   --ink-3:#9C9088;
+  --bg:#14100D;        --surface:#1F1915; --surface-2:#2A231D;
+  --line:#3A312A;      --line-strong:#544738;
+  --focus:#7FB2FF;
+  --shadow:0 1px 2px rgba(0,0,0,.4), 0 8px 24px -12px rgba(0,0,0,.6);
+}
+@media (prefers-color-scheme: dark){
+  :root:not([data-theme="light"]){
+    --clay:#E89268;    --clay-soft:#C9704B;
+    --forest:#7FBF9A;  --forest-soft:#4A7C5E;
+    --gold:#E0B45F;
+    --ink:#F5EEE4;     --ink-2:#CBBFB2;   --ink-3:#9C9088;
+    --bg:#14100D;      --surface:#1F1915; --surface-2:#2A231D;
+    --line:#3A312A;    --line-strong:#544738;
+    --focus:#7FB2FF;
+    --shadow:0 1px 2px rgba(0,0,0,.4), 0 8px 24px -12px rgba(0,0,0,.6);
+  }
+}
+/* 고대비 모드 — 명도 대비 최대화 */
+:root[data-contrast="high"]{
+  --bg:#FFFFFF; --surface:#FFFFFF; --surface-2:#FFFFFF;
+  --ink:#000000; --ink-2:#000000; --ink-3:#1A1A1A;
+  --clay:#8A2F10; --forest:#0F3D28; --gold:#6A4400;
+  --line:#000000; --line-strong:#000000;
+  --shadow:none;
+}
+:root[data-contrast="high"][data-theme="dark"],
+:root[data-contrast="high"] { --focus:#0A3FA8; }
+:root[data-contrast="high"] .card,
+:root[data-contrast="high"] .panel,
+:root[data-contrast="high"] .stat,
+:root[data-contrast="high"] figure { border-width:2px !important; }
+
+*,*::before,*::after{box-sizing:border-box}
+html{ -webkit-text-size-adjust:100%; scroll-behavior:smooth; }
+@media (prefers-reduced-motion: reduce){
+  html{scroll-behavior:auto}
+  *{animation-duration:.001ms !important; transition-duration:.001ms !important}
+}
+body{
+  margin:0; background:var(--bg); color:var(--ink);
+  font-family:var(--sans); font-size:var(--fs-base); line-height:1.75;
+  letter-spacing:-.01em; word-break:keep-all; overflow-wrap:anywhere;
+}
+h1,h2,h3,h4{line-height:1.3; letter-spacing:-.025em; margin:0}
+p{margin:0}
+img{max-width:100%; height:auto; display:block}
+a{color:var(--clay); text-underline-offset:.22em; text-decoration-thickness:.08em}
+a:hover{color:var(--ink)}
+
+/* 포커스 링 — 키보드 사용자에게 항상 뚜렷하게 */
+:where(a,button,input,select,summary,[tabindex]):focus-visible{
+  outline:3px solid var(--focus); outline-offset:3px; border-radius:6px;
+}
+
+/* 본문 바로가기 */
+.skip{
+  position:absolute; left:8px; top:8px; z-index:200;
+  transform:translateY(-160%);
+  background:var(--ink); color:var(--bg); padding:.7em 1.2em;
+  border-radius:8px; font-weight:700; text-decoration:none;
+}
+.skip:focus{transform:translateY(0)}
+
+.wrap{width:min(100% - 2.5rem, var(--maxw)); margin-inline:auto}
+.sr-only{
+  position:absolute; width:1px; height:1px; padding:0; margin:-1px;
+  overflow:hidden; clip:rect(0 0 0 0); white-space:nowrap; border:0;
+}
+
+/* ── 점자 셀 (장식) ───────────────────────────────── */
+.braille-strip{display:flex; gap:.5rem; align-items:center}
+.bcell{
+  display:grid; grid-template-columns:repeat(2,7px); grid-auto-rows:7px;
+  gap:4px; padding:6px; border-radius:5px;
+}
+.bdot{width:7px; height:7px; border-radius:50%; background:currentColor; opacity:.22}
+.bdot.on{opacity:1}
+
+/* ── 상단 도구 막대 ───────────────────────────────── */
+.toolbar{
+  background:var(--ink); color:var(--bg);
+  font-size:.86em; position:relative; z-index:60;
+}
+:root[data-contrast="high"] .toolbar{background:#000; color:#fff}
+.toolbar .wrap{
+  display:flex; flex-wrap:wrap; gap:.5rem 1.25rem;
+  align-items:center; justify-content:flex-end; padding:.5rem 0;
+}
+.toolbar .tb-label{margin-right:.15rem; opacity:.75; font-weight:600}
+.tb-group{display:flex; align-items:center; gap:.3rem}
+.tb-btn{
+  font:inherit; font-weight:700; cursor:pointer;
+  background:transparent; color:inherit;
+  /* 도구 막대는 본문과 명암이 반전되므로, 테두리를 현재 글자색 기준으로 잡는다 */
+  border:1.5px solid rgba(128,128,128,.6);
+  border-color:color-mix(in srgb, currentColor 45%, transparent);
+  border-radius:7px; padding:.24em .7em; line-height:1.5;
+}
+.tb-btn:hover{
+  background:rgba(128,128,128,.22);
+  background:color-mix(in srgb, currentColor 16%, transparent);
+}
+.tb-btn[aria-pressed="true"]{background:var(--bg); color:var(--ink); border-color:var(--bg)}
+:root[data-contrast="high"] .tb-btn{border-color:#fff}
+:root[data-contrast="high"] .tb-btn[aria-pressed="true"]{background:#fff; color:#000}
+
+/* ── 헤더 / 내비게이션 ────────────────────────────── */
+header.site{
+  position:sticky; top:0; z-index:50;
+  background:color-mix(in srgb, var(--bg) 92%, transparent);
+  backdrop-filter:saturate(1.4) blur(10px);
+  border-bottom:1px solid var(--line);
+}
+:root[data-contrast="high"] header.site{background:#fff; border-bottom-width:2px}
+header.site .wrap{
+  display:flex; align-items:center; justify-content:space-between;
+  gap:1rem; min-height:64px; padding:.5rem 0;
+}
+.brand{display:flex; align-items:center; gap:.7rem; text-decoration:none; color:var(--ink)}
+.brand .bcell{color:var(--clay); background:var(--surface-2); border:1px solid var(--line)}
+.brand b{font-size:1.02em; font-weight:800; letter-spacing:-.03em; display:block}
+.brand span{font-size:.76em; color:var(--ink-3); font-weight:600; display:block; line-height:1.4}
+
+nav.main ul{display:flex; gap:.15rem; list-style:none; margin:0; padding:0; flex-wrap:wrap}
+nav.main a{
+  display:block; padding:.45em .8em; border-radius:9px;
+  text-decoration:none; color:var(--ink-2); font-weight:700; font-size:.9em;
+}
+nav.main a:hover{background:var(--surface-2); color:var(--ink)}
+nav.main a[aria-current="true"]{background:var(--clay); color:#fff}
+:root[data-theme="dark"] nav.main a[aria-current="true"]{color:#14100D}
+
+.nav-toggle{display:none}
+@media (max-width:880px){
+  header.site .wrap{flex-wrap:wrap}
+  .nav-toggle{
+    display:inline-flex; align-items:center; gap:.45rem; font:inherit; font-weight:700;
+    font-size:.9em; cursor:pointer; background:var(--surface-2); color:var(--ink);
+    border:1.5px solid var(--line-strong); border-radius:9px; padding:.42em .85em;
+  }
+  nav.main{flex-basis:100%; display:none; padding-bottom:.6rem}
+  nav.main.open{display:block}
+  nav.main ul{flex-direction:column; gap:.1rem}
+  nav.main a{padding:.6em .8em}
+}
+
+/* ── 히어로 ───────────────────────────────────────── */
+.hero{
+  position:relative; overflow:hidden;
+  background:
+    radial-gradient(120% 90% at 88% -10%, color-mix(in srgb, var(--gold) 22%, transparent), transparent 62%),
+    radial-gradient(100% 80% at 0% 110%, color-mix(in srgb, var(--forest) 20%, transparent), transparent 60%),
+    var(--surface-2);
+  border-bottom:1px solid var(--line);
+}
+:root[data-contrast="high"] .hero{background:#fff; border-bottom-width:2px}
+.hero .wrap{padding:clamp(3rem,7vw,5.5rem) 0 clamp(2.5rem,5vw,4rem)}
+.eyebrow{
+  display:inline-flex; align-items:center; gap:.6rem; flex-wrap:wrap;
+  font-size:.82em; font-weight:800; letter-spacing:.02em;
+  color:var(--forest); background:var(--surface);
+  border:1.5px solid var(--line-strong); border-radius:999px; padding:.35em 1em;
+}
+.hero h1{
+  font-size:clamp(2.1rem,6.2vw,3.9rem); font-weight:800;
+  margin:1.1rem 0 0; letter-spacing:-.045em;
+}
+.hero h1 .accent{color:var(--clay)}
+.hero .sub{
+  font-size:clamp(1.02rem,2.1vw,1.3rem); color:var(--ink-2);
+  margin-top:1.1rem; max-width:44ch; font-weight:500;
+}
+.hero-braille{margin-top:1.9rem; color:var(--clay)}
+.hero-braille .bcell{background:var(--surface); border:1px solid var(--line)}
+.hero-braille .cap{font-size:.8em; color:var(--ink-3); margin-top:.6rem; font-weight:600}
+
+.stats{
+  display:grid; gap:.9rem; margin-top:2.6rem;
+  grid-template-columns:repeat(auto-fit,minmax(150px,1fr));
+}
+.stat{
+  background:var(--surface); border:1px solid var(--line);
+  border-radius:var(--radius); padding:1.1rem 1.2rem; box-shadow:var(--shadow);
+}
+.stat .n{font-size:1.9em; font-weight:800; color:var(--clay); line-height:1.1; letter-spacing:-.04em}
+.stat .l{font-size:.85em; color:var(--ink-3); font-weight:700; margin-top:.35rem}
+
+/* ── 섹션 공통 ────────────────────────────────────── */
+section[id]{scroll-margin-top:84px}
+.sec{padding:clamp(3.2rem,6.5vw,5.2rem) 0; border-bottom:1px solid var(--line)}
+.sec.alt{background:var(--surface-2)}
+:root[data-contrast="high"] .sec{border-bottom-width:2px}
+.sec-head{max-width:60ch; margin-bottom:2.4rem}
+.sec-kicker{
+  font-size:.8em; font-weight:800; letter-spacing:.12em;
+  color:var(--forest); text-transform:uppercase; display:block; margin-bottom:.7rem;
+}
+.sec h2{font-size:clamp(1.6rem,3.6vw,2.35rem); font-weight:800; letter-spacing:-.035em}
+.sec-head p{margin-top:.95rem; color:var(--ink-2); font-size:1.02em}
+
+/* ── 카드 ─────────────────────────────────────────── */
+.grid{display:grid; gap:1.1rem}
+.grid.c2{grid-template-columns:repeat(auto-fit,minmax(300px,1fr))}
+.grid.c3{grid-template-columns:repeat(auto-fit,minmax(272px,1fr))}
+.card{
+  background:var(--surface); border:1px solid var(--line);
+  border-radius:var(--radius); padding:1.5rem 1.6rem;
+  box-shadow:var(--shadow); display:flex; flex-direction:column; gap:.75rem;
+}
+.card .tag{
+  align-self:flex-start; font-size:.74em; font-weight:800; letter-spacing:.04em;
+  color:#fff; background:var(--forest); border-radius:999px; padding:.3em .85em;
+}
+:root[data-theme="dark"] .card .tag{color:#14100D}
+.card .tag.clay{background:var(--clay)}
+.card .tag.gold{background:var(--gold)}
+.card h3{font-size:1.14em; font-weight:800}
+.card p{color:var(--ink-2); font-size:.95em}
+.card ul{margin:0; padding-left:1.15em; color:var(--ink-2); font-size:.93em}
+.card li{margin-bottom:.3em}
+.card li::marker{color:var(--clay)}
+
+/* ── 표 ───────────────────────────────────────────── */
+.table-scroll{overflow-x:auto; border:1px solid var(--line); border-radius:var(--radius); background:var(--surface)}
+table{border-collapse:collapse; width:100%; min-width:640px; font-size:.94em}
+caption{text-align:left; padding:1.1rem 1.3rem .3rem; font-weight:800; font-size:1.02em}
+caption .cap-sub{display:block; font-weight:500; font-size:.85em; color:var(--ink-3); margin-top:.3rem}
+th,td{padding:.85rem 1.1rem; text-align:left; border-bottom:1px solid var(--line); vertical-align:top}
+thead th{background:var(--surface-2); font-weight:800; font-size:.9em; color:var(--ink-2); white-space:nowrap}
+tbody th{font-weight:700; white-space:nowrap; color:var(--clay)}
+tbody tr:last-child th, tbody tr:last-child td{border-bottom:0}
+
+/* ── 점자 변환기 ──────────────────────────────────── */
+.panel{
+  background:var(--surface); border:1px solid var(--line);
+  border-radius:var(--radius); padding:clamp(1.4rem,3vw,2.2rem); box-shadow:var(--shadow);
+}
+.field label{display:block; font-weight:800; margin-bottom:.55rem; font-size:.96em}
+.field .hint{font-size:.85em; color:var(--ink-3); font-weight:500; margin-bottom:.7rem}
+.field input[type="text"]{
+  width:100%; font:inherit; font-size:1.12em; padding:.75em .95em;
+  border:2px solid var(--line-strong); border-radius:10px;
+  background:var(--bg); color:var(--ink);
+}
+.chips{display:flex; flex-wrap:wrap; gap:.45rem; margin-top:.85rem}
+.chip{
+  font:inherit; font-size:.86em; font-weight:700; cursor:pointer;
+  background:var(--surface-2); color:var(--ink-2);
+  border:1.5px solid var(--line-strong); border-radius:999px; padding:.32em .95em;
+}
+.chip:hover{background:var(--clay); color:#fff; border-color:var(--clay)}
+:root[data-theme="dark"] .chip:hover{color:#14100D}
+
+.braille-out{
+  margin-top:1.6rem; padding:1.4rem; border-radius:12px;
+  background:var(--surface-2); border:1px solid var(--line); min-height:120px;
+}
+.syllables{display:flex; flex-wrap:wrap; gap:1.1rem}
+.syl{
+  background:var(--surface); border:1px solid var(--line);
+  border-radius:11px; padding:.85rem .95rem; text-align:center;
+}
+.syl .ko{font-size:1.5em; font-weight:800; margin-bottom:.6rem; line-height:1}
+.syl .cells{display:flex; gap:.4rem; justify-content:center; color:var(--clay)}
+.syl .cells .bcell{
+  background:var(--surface-2); border:1px solid var(--line-strong);
+  grid-template-columns:repeat(2,9px); grid-auto-rows:9px; gap:5px; padding:7px;
+}
+.syl .cells .bdot{width:9px; height:9px}
+.syl .parts{font-size:.74em; color:var(--ink-3); margin-top:.55rem; font-weight:700}
+.unicode-line{
+  margin-top:1.3rem; padding-top:1.1rem; border-top:1px dashed var(--line-strong);
+  font-size:.88em; color:var(--ink-3); font-weight:600;
+}
+.unicode-line .dots{
+  font-size:1.9em; color:var(--ink); letter-spacing:.06em;
+  display:block; margin-top:.4rem; line-height:1.5;
+  font-family:"Segoe UI Symbol","Apple Symbols",serif;
+}
+.note{
+  margin-top:1.5rem; padding:.95rem 1.15rem; border-left:4px solid var(--gold);
+  background:var(--surface-2); border-radius:0 8px 8px 0;
+  font-size:.88em; color:var(--ink-2);
+}
+:root[data-contrast="high"] .note{border-left-width:6px; border:2px solid #000; border-left:6px solid #6A4400}
+
+/* 자모 대조표 */
+.jamo-grid{display:grid; gap:.6rem; grid-template-columns:repeat(auto-fill,minmax(84px,1fr)); margin-top:1rem}
+.jamo{
+  background:var(--surface); border:1px solid var(--line); border-radius:10px;
+  padding:.7rem .4rem; text-align:center;
+}
+.jamo .j{font-size:1.15em; font-weight:800; margin-bottom:.45rem}
+.jamo .cells{display:flex; gap:.25rem; justify-content:center; color:var(--forest)}
+.jamo .bcell{padding:4px; gap:3px; grid-template-columns:repeat(2,6px); grid-auto-rows:6px}
+.jamo .bdot{width:6px; height:6px}
+
+/* ── 동화책 ───────────────────────────────────────── */
+.books{display:grid; gap:1.3rem; grid-template-columns:repeat(auto-fit,minmax(268px,1fr))}
+.book{
+  background:var(--surface); border:1px solid var(--line); border-radius:var(--radius);
+  overflow:hidden; box-shadow:var(--shadow); display:flex; flex-direction:column;
+}
+.book img{width:100%; aspect-ratio:1/1; object-fit:cover; border-bottom:1px solid var(--line)}
+.book .body{padding:1.15rem 1.3rem 1.35rem; display:flex; flex-direction:column; gap:.5rem; flex:1}
+.book h3{font-size:1.06em; font-weight:800; letter-spacing:-.025em}
+.book .by{font-size:.8em; color:var(--forest); font-weight:800}
+.book p{font-size:.9em; color:var(--ink-2)}
+
+/* ── 동화책 뷰어 ──────────────────────────────────── */
+.read-btn{
+  margin-top:auto; align-self:flex-start;
+  font:inherit; font-size:.9em; font-weight:800; cursor:pointer;
+  background:var(--forest); color:#fff; border:0; border-radius:9px;
+  padding:.55em 1.1em; display:inline-flex; align-items:center; gap:.45rem;
+}
+:root[data-theme="dark"] .read-btn{color:#14100D}
+.read-btn:hover{background:var(--clay)}
+.read-btn small{font-weight:600; opacity:.85; font-size:.85em}
+:root[data-contrast="high"] .read-btn{background:#000; color:#fff; border:2px solid #000}
+
+.reader[hidden]{display:none !important}
+.reader{
+  position:fixed; inset:0; z-index:120; display:flex; flex-direction:column;
+  background:var(--bg);
+}
+.reader-bar{
+  display:flex; align-items:center; gap:1rem; flex-wrap:wrap;
+  padding:.85rem clamp(1rem,3vw,2rem);
+  border-bottom:1px solid var(--line); background:var(--surface);
+}
+.reader-bar h2{font-size:1.05em; font-weight:800; flex:1; min-width:0}
+.reader-bar .count{font-size:.9em; font-weight:700; color:var(--ink-3); white-space:nowrap}
+.reader-close{
+  font:inherit; font-weight:800; font-size:.9em; cursor:pointer;
+  background:var(--surface-2); color:var(--ink);
+  border:1.5px solid var(--line-strong); border-radius:9px; padding:.42em .95em;
+}
+.reader-close:hover{background:var(--clay); color:#fff; border-color:var(--clay)}
+
+.reader-stage{
+  flex:1; overflow-y:auto; padding:clamp(1rem,3vw,2rem);
+  display:flex; flex-direction:column; align-items:center; gap:1.2rem;
+}
+.reader-stage img{
+  max-width:min(100%,760px); width:100%; border-radius:12px;
+  border:1px solid var(--line); box-shadow:var(--shadow); background:var(--surface-2);
+}
+.page-text{
+  max-width:62ch; width:100%; font-size:1.02em; line-height:1.9; color:var(--ink-2);
+  background:var(--surface); border:1px solid var(--line); border-left:4px solid var(--forest);
+  border-radius:0 10px 10px 0; padding:1.1rem 1.3rem;
+}
+.page-text.none{color:var(--ink-3); font-size:.92em; border-left-color:var(--gold)}
+
+.reader-nav{
+  display:flex; align-items:center; justify-content:center; gap:.6rem; flex-wrap:wrap;
+  padding:.85rem 1rem calc(.85rem + env(safe-area-inset-bottom));
+  border-top:1px solid var(--line); background:var(--surface);
+}
+.reader-nav button{
+  font:inherit; font-weight:800; font-size:.95em; cursor:pointer;
+  background:var(--surface-2); color:var(--ink);
+  border:1.5px solid var(--line-strong); border-radius:10px; padding:.55em 1.3em;
+}
+.reader-nav button:hover:not(:disabled){background:var(--clay); color:#fff; border-color:var(--clay)}
+.reader-nav button:disabled{opacity:.4; cursor:not-allowed}
+.reader-nav .jump{display:flex; align-items:center; gap:.4rem; font-size:.9em; font-weight:700}
+.reader-nav input[type="number"]{
+  font:inherit; width:5em; padding:.4em .5em; text-align:center;
+  border:1.5px solid var(--line-strong); border-radius:8px;
+  background:var(--bg); color:var(--ink);
+}
+
+/* ── 지도안 아카이브 ──────────────────────────────── */
+.doc{
+  background:var(--surface); border:1px solid var(--line); border-radius:var(--radius);
+  box-shadow:var(--shadow); overflow:hidden;
+}
+.doc > summary{
+  cursor:pointer; padding:1.3rem 1.5rem; list-style:none;
+  display:flex; align-items:flex-start; gap:1rem; font-weight:800;
+}
+.doc > summary::-webkit-details-marker{display:none}
+.doc > summary:hover{background:var(--surface-2)}
+.doc .marker{
+  flex:none; width:30px; height:30px; border-radius:8px;
+  background:var(--forest); color:#fff; display:grid; place-items:center;
+  font-size:.95em; font-weight:800; transition:transform .2s ease;
+}
+:root[data-theme="dark"] .doc .marker{color:#14100D}
+.doc[open] .marker{transform:rotate(45deg); background:var(--clay)}
+.doc summary .t{flex:1; font-size:1.08em; font-weight:800; letter-spacing:-.02em}
+.doc summary .t small{display:block; font-weight:600; font-size:.78em; color:var(--ink-3); margin-top:.3rem; letter-spacing:0}
+.doc-body{padding:0 1.5rem 1.6rem; border-top:1px solid var(--line)}
+.doc-body h4{margin-top:1.4rem; font-size:1em; color:var(--clay)}
+.doc-body ul{margin:.6rem 0 0; padding-left:1.2em; color:var(--ink-2); font-size:.94em}
+.doc-body li{margin-bottom:.35em}
+.doc-body li::marker{color:var(--forest)}
+.doc-body > p{margin-top:1.1rem; color:var(--ink-2); font-size:.95em}
+
+.steps{list-style:none; margin:1.2rem 0 0; padding:0; counter-reset:s}
+.steps li{
+  counter-increment:s; position:relative; padding:0 0 1.2rem 3.1rem;
+  border-left:2px solid var(--line); margin-left:1rem;
+}
+.steps li:last-child{border-left-color:transparent; padding-bottom:0}
+.steps li::before{
+  content:counter(s); position:absolute; left:-1rem; top:0;
+  width:2rem; height:2rem; border-radius:50%;
+  background:var(--clay); color:#fff; display:grid; place-items:center;
+  font-weight:800; font-size:.85em;
+}
+:root[data-theme="dark"] .steps li::before{color:#14100D}
+.steps b{display:block; font-size:1.02em; margin-bottom:.3rem}
+.steps span{color:var(--ink-2); font-size:.94em}
+
+/* ── 갤러리 ───────────────────────────────────────── */
+.gallery{display:grid; gap:1.1rem; grid-template-columns:repeat(auto-fit,minmax(288px,1fr))}
+figure{
+  margin:0; background:var(--surface); border:1px solid var(--line);
+  border-radius:var(--radius); overflow:hidden; box-shadow:var(--shadow);
+}
+figure img{width:100%; aspect-ratio:4/3; object-fit:cover}
+figcaption{padding:.95rem 1.15rem; font-size:.9em; color:var(--ink-2)}
+figcaption b{display:block; color:var(--ink); margin-bottom:.25rem; font-size:1.02em}
+
+/* ── 푸터 ─────────────────────────────────────────── */
+footer.site{padding:3rem 0 3.5rem; background:var(--surface-2); font-size:.92em}
+footer.site .cols{display:grid; gap:2rem; grid-template-columns:repeat(auto-fit,minmax(230px,1fr))}
+footer.site h3{font-size:.82em; letter-spacing:.1em; text-transform:uppercase; color:var(--forest); margin-bottom:.8rem}
+footer.site p, footer.site li{color:var(--ink-2)}
+footer.site ul{list-style:none; margin:0; padding:0}
+footer.site li{margin-bottom:.4em}
+.footer-bottom{
+  margin-top:2.6rem; padding-top:1.5rem; border-top:1px solid var(--line-strong);
+  color:var(--ink-3); font-size:.9em;
+}
+.to-top{
+  display:inline-block; margin-top:1rem; font-weight:700;
+  color:var(--clay); text-decoration:none;
+}
+.to-top:hover{text-decoration:underline}
+
+@media print{
+  .toolbar, header.site, .nav-toggle, .to-top{display:none !important}
+  body{background:#fff; color:#000; font-size:11pt}
+  .sec{padding:1.2rem 0; page-break-inside:avoid}
+  .doc-body{display:block !important}
+}
+</style>
+</head>
+<body>
+
+<a class="skip" href="#main">본문 바로가기</a>
+
+<!-- ══ 접근성 도구 막대 ══════════════════════════════ -->
+<div class="toolbar">
+  <div class="wrap">
+    <span class="tb-label" id="a11y-label">화면 설정</span>
+    <div class="tb-group" role="group" aria-labelledby="fs-label">
+      <span class="sr-only" id="fs-label">글자 크기 조절</span>
+      <button type="button" class="tb-btn" id="fs-down" aria-label="글자 크기 줄이기">가&minus;</button>
+      <button type="button" class="tb-btn" id="fs-reset" aria-label="글자 크기 기본값으로">기본</button>
+      <button type="button" class="tb-btn" id="fs-up" aria-label="글자 크기 키우기">가&plus;</button>
+    </div>
+    <button type="button" class="tb-btn" id="contrast-btn" aria-pressed="false">고대비</button>
+    <button type="button" class="tb-btn" id="theme-btn" aria-pressed="false">어두운 화면</button>
+    <p class="sr-only" role="status" aria-live="polite" id="a11y-status"></p>
+  </div>
+</div>
+
+<!-- ══ 헤더 ══════════════════════════════════════════ -->
+<header class="site">
+  <div class="wrap">
+    <a class="brand" href="#top">
+      <span class="bcell" aria-hidden="true">
+        <i class="bdot on"></i><i class="bdot"></i>
+        <i class="bdot on"></i><i class="bdot on"></i>
+        <i class="bdot"></i><i class="bdot on"></i>
+      </span>
+      <span>
+        <b>사람이 꽃보다 아름다워</b>
+        <span>대전대신고등학교 &times; 대전맹학교</span>
+      </span>
+    </a>
+
+    <button type="button" class="nav-toggle" id="nav-toggle" aria-expanded="false" aria-controls="main-nav">
+      <span aria-hidden="true">☰</span> 메뉴
+    </button>
+
+    <nav class="main" id="main-nav" aria-label="주요 메뉴">
+      <ul>
+        <li><a href="#about">프로젝트</a></li>
+        <li><a href="#programs">프로그램</a></li>
+        <li><a href="#schedule">일정</a></li>
+        <li><a href="#braille">점자 체험</a></li>
+        <li><a href="#books">동화책</a></li>
+        <li><a href="#lesson">교육지도안</a></li>
+        <li><a href="#gallery">활동 기록</a></li>
+        <li><a href="#a11y">접근성</a></li>
+      </ul>
+    </nav>
+  </div>
+</header>
+
+<main id="main">
+
+<!-- ══ 히어로 ════════════════════════════════════════ -->
+<div class="hero" id="top">
+  <div class="wrap">
+    <p class="eyebrow">2026학년도 장애인식개선 학생동아리 &middot; 2026. 4. ~ 12.</p>
+    <h1>보이지 않아도<br>함께 <span class="accent">걸을 수 있습니다</span></h1>
+    <p class="sub">
+      대전대신고등학교와 대전맹학교 학생들이 함께 기획하고 함께 운영하는
+      장애 공감 문화 확산 &middot; 진로 융합 프로젝트입니다.
+      장애를 <strong>밖에서 바라보는</strong> 교육이 아니라,
+      <strong>안에서 함께 겪어 보는</strong> 교육을 지향합니다.
+    </p>
+
+    <div class="hero-braille">
+      <!-- '사람이 꽃보다 아름다워' 첫 두 글자를 점자로 -->
+      <div class="braille-strip" id="hero-braille" aria-hidden="true"></div>
+      <p class="cap">위 점자는 &lsquo;사람&rsquo;을 훈맹정음으로 적은 것입니다.</p>
+    </div>
+
+    <div class="stats">
+      <div class="stat"><div class="n">2</div><div class="l">함께하는 학교</div></div>
+      <div class="stat"><div class="n">31</div><div class="l">참여 학생</div></div>
+      <div class="stat"><div class="n">6</div><div class="l">운영 프로그램</div></div>
+      <div class="stat"><div class="n">6</div><div class="l">함께 만든 동화책</div></div>
+      <div class="stat"><div class="n">3</div><div class="l">연차 (2024~2026)</div></div>
+    </div>
+  </div>
+</div>
+
+<!-- ══ 프로젝트 소개 ═════════════════════════════════ -->
+<section class="sec" id="about" aria-labelledby="about-h">
+  <div class="wrap">
+    <div class="sec-head">
+      <span class="sec-kicker">Why</span>
+      <h2 id="about-h">왜 &lsquo;장애 감수성&rsquo;인가</h2>
+      <p>
+        장애를 바라보는 관점은 크게 둘로 나뉩니다. 이 프로젝트는 두 번째 관점 위에 서 있습니다.
+      </p>
+    </div>
+
+    <div class="grid c2">
+      <article class="card">
+        <span class="tag gold">개별적 모델</span>
+        <h3>장애는 개인의 문제인가</h3>
+        <p>
+          개인이 가진 신체적&middot;정신적&middot;지적 손상을 중심으로 장애를 이해하고,
+          장애를 개인이 극복해야 할 문제로 간주하는 관점입니다.
+        </p>
+      </article>
+      <article class="card">
+        <span class="tag">사회적 모델</span>
+        <h3>장애는 사회의 문제입니다</h3>
+        <p>
+          사회적 환경과 제도에서 비롯되는 차별을 장애로 인식하고,
+          이를 사회가 함께 해결해야 할 문제로 간주하는 관점입니다.
+          이 프로젝트는 여기에서 출발합니다.
+        </p>
+      </article>
+    </div>
+
+    <div class="grid c3" style="margin-top:1.1rem">
+      <article class="card">
+        <h3>장애 감수성이란</h3>
+        <p>
+          일상에서 마주하는 여러 상황을 <strong>장애인의 자리에서</strong>
+          인식하고 해석하는 능력입니다. 동정이나 시혜가 아니라,
+          장애의 특성을 지식으로 알고 그 어려움에 정서적으로 공감하는 힘입니다.
+        </p>
+      </article>
+      <article class="card">
+        <h3>학생이 기획하고 학생이 가르칩니다</h3>
+        <p>
+          정체된 장애인식개선 교육 방식에서 벗어나,
+          시각장애 학생과 비장애 학생이 <strong>함께 주도적으로 기획&middot;운영</strong>합니다.
+          맹학교 학생이 강사가 되어 대신고 학생을 가르치는 시간이 프로그램의 중심입니다.
+        </p>
+      </article>
+      <article class="card">
+        <h3>진로로 이어집니다</h3>
+        <p>
+          시각장애 학생은 시각 손상과 사회의 부정적 인식으로 진로 선택에 제약을 겪습니다.
+          진로가 비슷한 학생끼리 매칭해 <strong>2024년부터 3년째</strong>
+          지속적인 진로 상담과 로드맵 설계를 이어 오고 있습니다.
+        </p>
+      </article>
+    </div>
+  </div>
+</section>
+
+<!-- ══ 프로그램 ══════════════════════════════════════ -->
+<section class="sec alt" id="programs" aria-labelledby="programs-h">
+  <div class="wrap">
+    <div class="sec-head">
+      <span class="sec-kicker">Programs</span>
+      <h2 id="programs-h">여섯 개의 프로그램</h2>
+      <p>체험, 학습, 진로, 창작, 실천이 하나의 흐름으로 이어지도록 설계했습니다.</p>
+    </div>
+
+    <div class="grid c2">
+
+      <article class="card">
+        <span class="tag clay">체험 &middot; 생태</span>
+        <h3>계족산 황톳길 걷기 프로젝트</h3>
+        <p>
+          시각장애인은 제한된 외부 신체 활동으로 건강 악화와 심리적 불안을 겪기 쉽습니다.
+          시각을 제외한 감각을 총동원해 맨발로 황톳길을 걷고, 인근 플로깅과 환경 캠프를 함께합니다.
+        </p>
+        <ul>
+          <li>시각장애 인식 사전 교육 (맹학교 교사 강의)</li>
+          <li>황톳길 맨발 걷기 &middot; 인근 플로깅</li>
+          <li>대학생 멘토와 함께하는 환경 캠프</li>
+          <li>소감문 작성 및 상호 피드백</li>
+        </ul>
+      </article>
+
+      <article class="card">
+        <span class="tag">학습 &middot; 수학</span>
+        <h3>10시 1반(십시일반) 수학 아카이브</h3>
+        <p>
+          시각장애 학생은 점자 문항을 기억과 암산으로 풀기 때문에 <strong>시독성</strong>이 결정적입니다.
+          그러나 대부분의 점자 수학 문제는 기존 문항을 단순 변환한 것이어서 시독력을 고려하지 않습니다.
+          TGI 인터뷰로 확인한 이 문제를 학생들이 직접 해결합니다.
+        </p>
+        <ul>
+          <li>공통수학1&middot;2, 대수, 미적분1 핵심 문항 선별</li>
+          <li>설명&middot;조건과 그래프 등 시각자료를 점자로 구체 변환</li>
+          <li>시독성을 고려해 점자를 <strong>재배열</strong>한 전용 문제집 제작</li>
+          <li>풀이에 어려움을 겪는 학생 맞춤형 수학 멘토링</li>
+        </ul>
+      </article>
+
+      <article class="card">
+        <span class="tag gold">진로</span>
+        <h3>함께 하는 진로&middot;진학 개선 프로그램</h3>
+        <p>
+          맹학교 학생과 진로가 유사한 대신고 학생을 1&#58;multi로 매칭해
+          또래 학습 형태로 진로 교육을 진행합니다. 2024년부터 이어 온 프로그램입니다.
+        </p>
+        <ul>
+          <li>시각장애인의 특수성을 고려한 대학 입시&middot;취업 사전 교육</li>
+          <li>관심 진로 분야의 비전과 최근 동향 함께 조사</li>
+          <li>진로 로드맵 작성 및 구체적 실행 방법 토론</li>
+        </ul>
+      </article>
+
+      <article class="card">
+        <span class="tag">문화 &middot; 창작</span>
+        <h3>Audio Book Garden</h3>
+        <p>
+          한국장애인재단 2020년 조사에서 오디오북은 대체 자료 수요 1위(61.5&percnt;)였지만,
+          국내 시각장애인용 대체자료 제작률은 4&percnt;에 그칩니다.
+          일본(50&percnt;)의 약 12분의 1 수준입니다. 또래가 직접 오디오북을 만듭니다.
+        </p>
+        <ul>
+          <li>맹학교 학생과 토의해 녹음할 도서 선정</li>
+          <li>전문(全文)과 요약본을 각각 녹음</li>
+          <li>멘토와 1:1로 청취하며 심화 설명</li>
+          <li>Design Thinking 5단계로 토의 후 결론 도출 &middot; 전시</li>
+        </ul>
+      </article>
+
+      <article class="card">
+        <span class="tag clay">예술</span>
+        <h3>아트 콜라보레이션</h3>
+        <p>
+          예술은 언어를 넘어 감정과 경험을 전달합니다.
+          시각 정보에 접근이 제한된 환경에서도 음악&middot;문학&middot;조각을 통해
+          자신의 감정을 표현하고 소통할 수 있습니다.
+        </p>
+        <ul>
+          <li>시각장애 학생과 함께하는 음악 콘서트</li>
+          <li>맹학교 &ndash; 대신고 학생 1:1 매칭 후 조별 주제 선정</li>
+          <li>문학&middot;미술 작품 제작 및 양교 전시</li>
+        </ul>
+      </article>
+
+      <article class="card">
+        <span class="tag gold">실천 &middot; 출판</span>
+        <h3>다시봄 &mdash; Book 시리즈</h3>
+        <p>
+          시각장애 학생이 일상에서 겪는 어려움을 공감할 수 있는 속책자 시리즈를 제작하고,
+          네 가지 직접 체험 활동을 함께 운영합니다.
+          2026년에는 맹학교 학생들과 함께 <a href="#books">동화책 여섯 권</a>을 구성해
+          글과 그림, 낭독 영상까지 완성했습니다.
+        </p>
+        <ul>
+          <li><strong>훈맹정음 배우기</strong> &mdash; 점자의 역사&middot;원리, 자음&middot;모음&middot;약자&middot;약어, 점자정보단말기</li>
+          <li><strong>베리어프리 보드게임</strong> &mdash; 점자와 일반 글자가 함께 새겨진 보드게임</li>
+          <li><strong>골볼</strong> &mdash; 안대를 쓰고 방울 든 공을 굴려 넣는 시각장애인 스포츠</li>
+          <li><strong>흰지팡이 보행 체험</strong> &mdash; 흰지팡이의 특징과 사용법 학습 후 안대 착용 보행</li>
+        </ul>
+      </article>
+
+    </div>
+  </div>
+</section>
+
+<!-- ══ 일정 ══════════════════════════════════════════ -->
+<section class="sec" id="schedule" aria-labelledby="schedule-h">
+  <div class="wrap">
+    <div class="sec-head">
+      <span class="sec-kicker">Schedule</span>
+      <h2 id="schedule-h">장애이해 공감문화 확산 프로그램</h2>
+      <p>
+        대전맹학교에서 열리는 이 프로그램은 <strong>맹학교 학생이 직접 준비하고 진행</strong>합니다.
+        대신고 학생 전원을 3개 조로 나누어 20분씩 로테이션하며, 모든 학생이 세 활동을 모두 경험합니다.
+      </p>
+    </div>
+
+    <div class="table-scroll">
+      <table>
+        <caption>
+          2026년 7월 20일(월) 대전맹학교 운영 일정
+          <span class="cap-sub">장소: 대전맹학교 세미나실 및 체육관 &middot; 대상: 대전맹학교 2~3학년 4명, 대전대신고 3학년 27명 내외</span>
+        </caption>
+        <thead>
+          <tr>
+            <th scope="col">시간</th>
+            <th scope="col">활동</th>
+            <th scope="col">내용</th>
+            <th scope="col">진행</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <th scope="row">14:00 &ndash; 14:20</th>
+            <td>시각장애 인식 사전 교육</td>
+            <td>장애 이해의 기초 개념과 프로그램 안내</td>
+            <td>맹학교 교사</td>
+          </tr>
+          <tr>
+            <th scope="row">14:20 &ndash; 14:50</th>
+            <td>보행 교육</td>
+            <td>흰지팡이의 구조와 보행 기법 실습</td>
+            <td>맹학교 교사 &middot; 학생</td>
+          </tr>
+          <tr>
+            <th scope="row">14:50 &ndash; 16:00<br><small>20분 &times; 3 로테이션</small></th>
+            <td>① 시각장애인의 글, 점자 배우기</td>
+            <td>훈맹정음 읽고 쓰기 실습</td>
+            <td>맹학교 학생 진행</td>
+          </tr>
+          <tr>
+            <th scope="row"></th>
+            <td>② 베리어프리 보드게임</td>
+            <td>장애와 비장애의 구분이 없는 보드게임</td>
+            <td>맹학교 학생 진행</td>
+          </tr>
+          <tr>
+            <th scope="row"></th>
+            <td>③ 시각장애인 스포츠</td>
+            <td>골볼과 쇼다운 직접 체험</td>
+            <td>맹학교 교사 &middot; 학생</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <p class="note">
+      전체 프로젝트 기간은 2026년 4월부터 12월까지이며,
+      7월 20일 &ndash; 8월 21일에 집중 운영됩니다.
+      계족산 황톳길 프로젝트는 별도 일정으로 진행되며 일정은 변경될 수 있습니다.
+    </p>
+  </div>
+</section>
+
+<!-- ══ 점자 체험 ═════════════════════════════════════ -->
+<section class="sec alt" id="braille" aria-labelledby="braille-h">
+  <div class="wrap">
+    <div class="sec-head">
+      <span class="sec-kicker">Interactive</span>
+      <h2 id="braille-h">훈맹정음 체험하기</h2>
+      <p>
+        1926년 박두성 선생이 만든 한글 점자, 훈맹정음입니다.
+        가로 2칸 &times; 세로 3칸, 여섯 개의 점만으로 모든 글자를 적습니다.
+        아래에 한글을 입력하면 점자로 어떻게 표기되는지 확인할 수 있습니다.
+      </p>
+    </div>
+
+    <div class="panel">
+      <div class="field">
+        <label for="braille-input">한글을 입력해 보세요</label>
+        <p class="hint">이름, 학교, 하고 싶은 말 등 자유롭게 입력하면 아래에 점자 표기가 나타납니다.</p>
+        <input type="text" id="braille-input" value="사람이 꽃보다 아름다워"
+               autocomplete="off" spellcheck="false"
+               aria-describedby="braille-result-desc">
+        <div class="chips">
+          <button type="button" class="chip" data-word="사람이 꽃보다 아름다워">사람이 꽃보다 아름다워</button>
+          <button type="button" class="chip" data-word="대전맹학교">대전맹학교</button>
+          <button type="button" class="chip" data-word="대전대신고">대전대신고</button>
+          <button type="button" class="chip" data-word="안녕하세요">안녕하세요</button>
+          <button type="button" class="chip" data-word="함께">함께</button>
+        </div>
+      </div>
+
+      <div class="braille-out">
+        <p class="sr-only" id="braille-result-desc">입력한 글자의 점자 표기 결과가 아래에 음절 단위로 표시됩니다.</p>
+        <div class="syllables" id="braille-output" role="group" aria-label="점자 변환 결과"></div>
+        <p class="unicode-line">
+          유니코드 점자 기호 (점자 디스플레이 &middot; 스크린리더 확인용)
+          <span class="dots" id="braille-unicode" role="img" aria-label="유니코드 점자 표기"></span>
+        </p>
+      </div>
+
+      <p class="note">
+        <strong>참고&nbsp;&mdash;</strong> 이 변환기는 한글 점자의 <strong>정자(正字) 표기</strong> 규정에 따라
+        초성&middot;중성&middot;종성을 한 칸씩 옮긴 것입니다.
+        실제 점자 문서에서는 &lsquo;그래서&rsquo;, &lsquo;－했다&rsquo; 같은
+        <strong>약자&middot;약어</strong>를 많이 사용하므로 표기가 달라질 수 있습니다.
+        또한 초성 &lsquo;ㅇ&rsquo;은 점자로 적지 않습니다. 교육용 참고 자료로 활용해 주세요.
+      </p>
+    </div>
+
+    <h3 style="margin-top:2.6rem; font-size:1.15em; font-weight:800">초성 대조표</h3>
+    <div class="jamo-grid" id="jamo-initial"></div>
+
+    <h3 style="margin-top:2rem; font-size:1.15em; font-weight:800">모음 대조표</h3>
+    <div class="jamo-grid" id="jamo-vowel"></div>
+  </div>
+</section>
+
+<!-- ══ 동화책 ════════════════════════════════════════ -->
+<section class="sec" id="books" aria-labelledby="books-h">
+  <div class="wrap">
+    <div class="sec-head">
+      <span class="sec-kicker">Storybooks</span>
+      <h2 id="books-h">함께 쓴 여섯 권의 동화책</h2>
+      <p>
+        &lsquo;다시봄&rsquo; Book 시리즈로, <strong>대전맹학교 학생들과 함께 이야기를 구성</strong>했습니다.
+        모든 책에는 영상으로 이어지는 QR 코드가 실려 있어, 글자를 읽기 어려운 독자도
+        같은 이야기를 들을 수 있습니다. 아래 두 권은 뒤에 이어지는 교육지도안의 수업 자료로 그대로 쓰였습니다.
+        각 책의 <strong>펼쳐 읽기</strong>를 누르면 196쪽 전체를 이 화면에서 바로 읽을 수 있습니다.
+      </p>
+    </div>
+
+    <div class="books">
+      <article class="book" data-book="dasi-chorok">
+        <img src="images/books/dasi-chorok.jpg" alt="동화책 『다시, 초록』 표지. 왼쪽에는 잿빛 연기를 뿜는 공장 지대가, 오른쪽에는 빛나는 숲과 폭포가 그려져 있고 그 사이에 소녀가 서 있다." width="760" height="760" loading="lazy">
+        <div class="body">
+          <span class="by">수업 자료로 사용 &middot; &lsquo;무에서 유를 창조&rsquo;조</span>
+          <h3>다시, 초록</h3>
+          <p>
+            3098년 먼 외계 별에서 태어난 하율에게는 아무도 모르는 비밀이 있습니다.
+            공장이 들어서며 숨쉬기 힘들어진 자연 친구들의 고민을 귀 기울여 듣지만,
+            같은 반 친구들은 &ldquo;지금 풀이랑 말하고 있는 거야?&rdquo;라며 이상하게 바라봅니다.
+            다양성 존중과 생태 감수성, 사회적 책임을 다룹니다.
+          </p>
+          <button type="button" class="read-btn" data-open="dasi-chorok">
+            <span aria-hidden="true">📖</span> 펼쳐 읽기 <small>33쪽</small>
+          </button>
+        </div>
+      </article>
+
+      <article class="book" data-book="haenim-dalnim">
+        <img src="images/books/haenim-dalnim.jpg" alt="동화책 『해님달님: 하늘로 안 가고 창업했습니다』 표지. 노을 진 마을에서 한복을 입은 남매와 호랑이가 떡집 앞에 나란히 서 있다." width="760" height="760" loading="lazy">
+        <div class="body">
+          <span class="by">수업 자료로 사용 &middot; 2-7팀</span>
+          <h3>해님달님: 하늘로 안 가고 창업했습니다</h3>
+          <p>
+            하늘로 올라가는 대신 떡집을 차린 해님과 달님 이야기입니다.
+            가난과 위협을 새로운 아이디어와 행동으로 해결해 갑니다.
+            책 말미에는 폐페트병을 모아 재활용하는 실제 기업 <strong>수퍼빈</strong>의 사례를 실어,
+            창업이 환경 문제 해결로 이어질 수 있음을 보여 줍니다.
+          </p>
+          <button type="button" class="read-btn" data-open="haenim-dalnim">
+            <span aria-hidden="true">📖</span> 펼쳐 읽기 <small>33쪽</small>
+          </button>
+        </div>
+      </article>
+
+      <article class="book" data-book="dangdanghage">
+        <img src="images/books/dangdanghage.jpg" alt="동화책 『나도 당당하게 말할 수 있어요!』 표지. 제복을 입은 거북이 선생님이 벤치에 앉아 알록달록한 사탕을 손바닥에 올려 내밀고 있다." width="760" height="760" loading="lazy">
+        <div class="body">
+          <span class="by">6조 &middot; 티처프러너 스쿨</span>
+          <h3>나도 당당하게 말할 수 있어요!</h3>
+          <p>
+            세상에서 가장 조용한 &lsquo;모두 바른 숲&rsquo; 동물 학교의 이야기입니다.
+            깐깐한 사자 교장선생님의 집무실에는 아무 문제도 없을 때만 울리는 황금 종이 있습니다.
+            침묵이 규칙이 된 곳에서 목소리를 내는 일에 관해 묻습니다.
+          </p>
+          <button type="button" class="read-btn" data-open="dangdanghage">
+            <span aria-hidden="true">📖</span> 펼쳐 읽기 <small>33쪽</small>
+          </button>
+        </div>
+      </article>
+
+      <article class="book" data-book="sseuregi-goemul">
+        <img src="images/books/sseuregi-goemul.jpg" alt="동화책 『쓰레기 괴물과 비밀의 발명 노트』 표지. 아이들이 직접 만든 발명품을 들고 폐기물이 뭉쳐진 거대한 괴물에 맞서고 있다." width="760" height="760" loading="lazy">
+        <div class="body">
+          <span class="by">국어 &lsquo;무하자&rsquo;조 &middot; 2-8</span>
+          <h3>쓰레기 괴물과 비밀의 발명 노트</h3>
+          <p>
+            가방 속에 고장 난 스피커와 알록달록한 전선을 가득 넣고 다니는
+            초등학교 4학년 잡동사니 수집가 강민우가 주인공입니다.
+            남들에게는 쓰레기인 것이 누군가에게는 소중한 보물이 됩니다.
+          </p>
+          <button type="button" class="read-btn" data-open="sseuregi-goemul">
+            <span aria-hidden="true">📖</span> 펼쳐 읽기 <small>33쪽</small>
+          </button>
+        </div>
+      </article>
+
+      <article class="book" data-book="arthur">
+        <img src="images/books/arthur.jpg" alt="동화책 『편지배달부 아더』 표지. 파란 하늘과 초록 언덕 사이로 오솔길이 나 있고 나무 한 그루와 들꽃이 그려진 담백한 그림." width="760" height="760" loading="lazy">
+        <div class="body">
+          <span class="by">아더의 편지 배달</span>
+          <h3>편지배달부 아더</h3>
+          <p>
+            펜팔 왕국의 작은 마을에 사는 열네 살 소년 아더는
+            가난한 집안 형편 때문에 여러 마을을 떠돌며 일합니다.
+            사람들의 이야기를 듣기 좋아하던 아더는 누군가에게 편지를 보내고 싶어 하는
+            마음들을 발견하고, 친구들과 함께 편지 배달 일을 시작합니다.
+          </p>
+          <button type="button" class="read-btn" data-open="arthur">
+            <span aria-hidden="true">📖</span> 펼쳐 읽기 <small>32쪽</small>
+          </button>
+        </div>
+      </article>
+
+      <article class="book" data-book="uri-set">
+        <img src="images/books/uri-set.jpg" alt="동화책 『우리 셋의 편지』 표지. 큰 나무 아래에서 세 아이가 편지 봉투를 함께 들여다보며 웃고 있고 뒤로 학교 건물이 보인다." width="760" height="760" loading="lazy">
+        <div class="body">
+          <span class="by">박시후 &middot; 이건우 &middot; 이선준 &middot; 최유준</span>
+          <h3>우리 셋의 편지</h3>
+          <p>
+            방학이 끝나고 처음 학교에 가는 날, 티모시는 두근거리는 마음으로 교실 문을 엽니다.
+            먼저 다가와 인사를 건네는 친구가 있었고, 점심시간에 도시락을 나누어 먹으며
+            셋은 금세 가까운 사이가 됩니다. 먼저 건네는 한마디에 관한 이야기입니다.
+          </p>
+          <button type="button" class="read-btn" data-open="uri-set">
+            <span aria-hidden="true">📖</span> 펼쳐 읽기 <small>32쪽</small>
+          </button>
+        </div>
+      </article>
+    </div>
+
+    <p class="note">
+      여섯 권 모두 학생들이 글과 그림을 직접 구성했으며, 표지의 QR 코드로 낭독&middot;소개 영상을 볼 수 있습니다.
+      원본 PDF는 프로젝트 폴더의 &lsquo;함께 하는 동아리&rsquo; 안에 있습니다.
+      <br><br>
+      <strong>스스로 발견한 과제 &mdash;</strong> 여섯 권 중 세 권(『나도 당당하게 말할 수 있어요!』,
+      『쓰레기 괴물과 비밀의 발명 노트』, 『우리 셋의 편지』)은 쪽마다 글이 따로 있어
+      화면낭독기로 읽을 수 있지만, 나머지 세 권은 글이 그림 안에 그려져 있어 읽어 주지 못합니다.
+      시각장애 독자를 염두에 둔 책이라면 그림과 글을 분리해 만들어야 한다는 점을,
+      만들고 나서야 알게 되었습니다. 다음 시리즈에서 보완할 부분입니다.
+    </p>
+  </div>
+</section>
+
+<!-- ══ 교육지도안 ════════════════════════════════════ -->
+<section class="sec alt" id="lesson" aria-labelledby="lesson-h">
+  <div class="wrap">
+    <div class="sec-head">
+      <span class="sec-kicker">Archive</span>
+      <h2 id="lesson-h">학생이 설계한 교육지도안</h2>
+      <p>
+        참여 학생들이 직접 연구하고 작성한 수업 설계안입니다.
+        생성형 AI를 <strong>쓸 것인가 말 것인가</strong>가 아니라
+        <strong>어느 단계에서 무엇에 쓸 것인가</strong>를 묻는 관점을 공유합니다.
+      </p>
+    </div>
+
+    <div class="grid" style="gap:1.1rem">
+
+      <details class="doc" open>
+        <summary>
+          <span class="marker" aria-hidden="true">+</span>
+          <h3 class="t">
+            TPACK &middot; AI-IBL 기반 반응중심 문학교육 커리큘럼
+            <small>1조 &middot; 동화 『다시, 초록』과 『해님달님』을 활용한 5단계 수업 설계</small>
+          </h3>
+        </summary>
+        <div class="doc-body">
+          <p>
+            『다시, 초록』은 하율의 특별한 능력이 친구들의 조롱과 성적 중심의 평가 속에서
+            억압되는 과정을 통해 다양성 존중과 생태 감수성을 보여 줍니다.
+            『해님달님』은 가난과 위협을 새로운 아이디어로 해결하는 과정에서
+            문제 발견과 기업가정신을 강조합니다.
+            학생이 작품의 의미를 능동적으로 구성하고, 작품 속 문제를
+            실제 사회&middot;환경 문제와 연결하도록 설계했습니다.
+          </p>
+
+          <h4>교수&middot;학습 5단계</h4>
+          <ol class="steps">
+            <li>
+              <b>반응하기</b>
+              <span>
+                작품을 읽고 인상 깊은 장면과 감정을 자유롭게 표현합니다.
+                교사는 주제나 교훈을 먼저 제시하지 않습니다.
+                <strong>이 단계에서 AI는 사용하지 않습니다</strong> &mdash; 학생 고유의 첫 반응을 보호하기 위해서입니다.
+              </span>
+            </li>
+            <li>
+              <b>질문하기</b>
+              <span>
+                감상을 탐구 가능한 질문으로 발전시킵니다.
+                AI는 <strong>반드시 학생이 질문을 만든 뒤에</strong> 투입되며,
+                답을 주는 대신 질문의 명확성과 탐구 가능성만 점검합니다.
+              </span>
+            </li>
+            <li>
+              <b>근거로 해석하기</b>
+              <span>
+                AI에 하율&middot;해님&middot;달님&middot;친구&middot;교사&middot;부모 등의 역할(페르소나)을 부여해
+                여러 관점을 탐색하되, AI의 답변이 작품 내용과 일치하는지 학생이 직접 검증합니다.
+                AI는 정답이 아니라 <strong>검토 대상</strong>입니다.
+              </span>
+            </li>
+            <li>
+              <b>재구성하기</b>
+              <span>
+                작품에서 발견한 문제를 새로운 결말과 해결안으로 다시 씁니다.
+                패들렛으로 의견을 공유하고 캔바로 결과물을 제작합니다.
+              </span>
+            </li>
+            <li>
+              <b>실천&middot;성찰하기</b>
+              <span>
+                교실 분리배출 점검, 학용품 교환, 급식 잔반 줄이기,
+                친구의 고유한 장점 찾아 주기 등 실제 행동으로 연결한 뒤
+                &lsquo;AI의 답변 중 타당하지 않았던 부분은 무엇인가&rsquo;를 포함해 성찰합니다.
+              </span>
+            </li>
+          </ol>
+
+          <h4>평가 관점</h4>
+          <ul>
+            <li>자신의 생각을 작품 속 장면과 사건으로 설명했는가</li>
+            <li>학생 스스로 탐구 질문을 만들었는가</li>
+            <li>친구와 AI의 의견을 비판적으로 비교했는가</li>
+            <li>AI의 답변을 그대로 복사하지 않고 수정&middot;검증했는가</li>
+            <li>학습과 실천 이후 자신의 생각 변화를 설명했는가</li>
+          </ul>
+        </div>
+      </details>
+
+      <details class="doc">
+        <summary>
+          <span class="marker" aria-hidden="true">+</span>
+          <h3 class="t">
+            AI-TPACK &middot; AI-IBL 결합 교수설계 모형 제안
+            <small>3조 &middot; 탐구 단계별로 AI의 역할을 차등 규정하는 설계 틀</small>
+          </h3>
+        </summary>
+        <div class="doc-body">
+          <p>
+            생성형 AI의 발전은 거스를 수 없지만, 무분별한 사용은 오히려 탐구 역량을 저해합니다.
+            문제는 <strong>사용 여부가 아니라 사용의 분별</strong>에 있습니다.
+            이 모형은 교사의 설계 절차(교육과정 분석 &rarr; 학습자 분석 &rarr; 방법 설계 &rarr; 수업 실행 &rarr; 평가) 안에
+            학생의 탐구 5단계를 넣고, 각 단계마다 AI에 위임할 역할의 범위와
+            교사에게 요구되는 지식을 함께 규정합니다.
+          </p>
+
+          <h4>탐구 단계별 AI 위임 범위</h4>
+          <ol class="steps">
+            <li>
+              <b>문제 발견 &mdash; 교사에게 필요한 지식: PCK</b>
+              <span>
+                AI는 학생이 이미 떠올린 모호한 생각을 다듬는 데에만 관여하고,
+                <strong>질문 자체를 만들어 주지 않습니다.</strong>
+                무엇을 궁금해할 것인가를 정하는 일은 탐구의 출발점이자 학생 고유의 몫이기 때문입니다.
+              </span>
+            </li>
+            <li>
+              <b>자료 분석 &mdash; AI-TCK</b>
+              <span>
+                요약과 정리는 AI에 폭넓게 맡기되, 자료가 믿을 만한지 판단하는 일은 학생이 직접 합니다.
+                <strong>판단까지 넘기면 탐구가 아니라 대필이 됩니다.</strong>
+              </span>
+            </li>
+            <li>
+              <b>가설 검증 &mdash; AI-TPK</b>
+              <span>
+                AI는 시뮬레이션이나 모의 토론 상대가 되어 논리적 허점을 짚어 주되
+                결론을 대신 내리지 않습니다. 학생이 자신의 오류를 스스로 발견하는 과정이 핵심입니다.
+              </span>
+            </li>
+            <li>
+              <b>산출 제작 &mdash; AI-TK &plus; CK</b>
+              <span>
+                코딩 도우미, 이미지 생성 도구로서 개입 폭이 넓어도 무방합니다.
+                아이디어는 학생의 것이고 AI는 표현 수단에 머물기 때문입니다.
+              </span>
+            </li>
+            <li>
+              <b>성찰 공유 &mdash; AI-TPACK</b>
+              <span>
+                AI는 개별 피드백을 제공하되 <strong>또래 피드백을 대체하지 않습니다.</strong>
+                성찰은 학습을 학습으로 만드는 마지막 관문이므로,
+                이를 AI에 넘기면 앞선 모든 단계의 설계가 무의미해집니다.
+              </span>
+            </li>
+          </ol>
+
+          <h4>제도적 실행 구상</h4>
+          <p>
+            교육부와 시&middot;도교육청은 2025년 12월 &lsquo;수행평가 시 인공지능 활용 관리 방안&rsquo;을 확정해
+            2026학년도 학업성적관리 시행지침에 반영했습니다.
+            다만 현행 지침은 &lsquo;활용 범위를 설정하라&rsquo;고 지시할 뿐,
+            누가 어떤 단위로 정하고 어떻게 확인할지는 규정하지 않습니다.
+            이 공백을 메우기 위해 <strong>교과협의회 단위의 단계별 AI 활용 기준표</strong>를 제안합니다.
+          </p>
+          <ul>
+            <li>각 탐구 단계를 <strong>허용 &middot; 제한 &middot; 금지</strong> 세 등급으로 구분하고 구체적 행위를 명시</li>
+            <li>예: &lsquo;문제 발견&rsquo;은 <em>제한</em> &mdash; 초안 다듬기는 허용, 질문 자체 생성은 금지</li>
+            <li>예: &lsquo;자료 분석&rsquo;은 <em>허용</em> &mdash; 요약&middot;통계 처리는 허용, 신뢰성 판단 위임은 금지</li>
+            <li>교사 개인이 정하면 형평성이, 학교 전체가 하나로 정하면 교과 특성이 훼손되므로 <strong>교과 단위</strong>가 최소 기준 단위</li>
+            <li>학기 초 평가 계획과 함께 학생&middot;학부모에게 공표</li>
+          </ul>
+        </div>
+      </details>
+
+    </div>
+  </div>
+</section>
+
+<!-- ══ 활동 기록 ═════════════════════════════════════ -->
+<section class="sec" id="gallery" aria-labelledby="gallery-h">
+  <div class="wrap">
+    <div class="sec-head">
+      <span class="sec-kicker">Records</span>
+      <h2 id="gallery-h">활동 기록</h2>
+      <p>
+        2024년부터 이어 온 프로젝트의 현장입니다.
+        2026년에는 &lsquo;장애공감 문화확산과 진로 융합 프로젝트&rsquo;라는 이름으로
+        7월 20일부터 8월 21일까지 운영했습니다.
+      </p>
+    </div>
+
+    <div class="gallery">
+      <figure>
+        <img src="images/group2026.jpg" alt="교실에서 대전대신고와 대전맹학교 학생 스무 명 남짓이 주먹을 들어 올리며 단체 사진을 찍고 있다. 뒤편 화면에는 2026 장애인식 개선 학생 동아리의 Audio Book Garden 사회·문화 개선 프로젝트 안내가 떠 있다." width="1100" height="619" loading="lazy">
+        <figcaption><b>2026 동아리 활동 마무리</b>Audio Book Garden과 다시봄 Book 시리즈를 함께 마친 날입니다.</figcaption>
+      </figure>
+
+      <figure>
+        <img src="images/group.jpg" alt="대전맹학교 강당에서 대전대신고와 대전맹학교 학생 약 40명이 &lsquo;시각장애학생의 이해 및 장애 인식 개선을 위한 생태 환경 연계 진로 프로젝트&rsquo;라고 적힌 현수막을 함께 들고 웃으며 단체 사진을 찍고 있다." width="1411" height="1058" loading="lazy">
+        <figcaption><b>프로젝트 출범</b>두 학교 학생들이 함께 만든 첫 단체 사진입니다.</figcaption>
+      </figure>
+
+      <figure>
+        <img src="images/goalball.jpg" alt="체육관 마룻바닥에서 안대를 착용한 학생이 파란색 골볼을 굴려 보내고, 맞은편 학생이 바닥에 몸을 낮춰 팔을 뻗어 공을 막으려 하고 있다." width="1411" height="1058" loading="lazy">
+        <figcaption><b>골볼</b>안대를 쓰고 방울이 든 공을 굴려 상대 골대에 넣는 경기입니다. 오직 청각과 촉각만 사용합니다.</figcaption>
+      </figure>
+
+      <figure>
+        <img src="images/showdown-1.jpg" alt="파란 안대를 쓴 학생이 장갑 낀 손으로 라켓을 잡고, 초록 테두리가 둘러진 나무 쇼다운 테이블 위의 노란 공을 향해 몸을 기울이고 있다. 뒤편에서는 다른 학생들이 골볼 코트에서 경기를 준비하고 있다." width="1411" height="1058" loading="lazy">
+        <figcaption><b>쇼다운</b>소리 나는 공을 라켓으로 쳐 상대 골에 넣는 시각장애인 탁구입니다.</figcaption>
+      </figure>
+
+      <figure>
+        <img src="images/showdown-2.jpg" alt="검은 안대를 쓴 학생이 쇼다운 테이블의 가운데 가림막 아래 공이 지나가는 구멍 부근을 양손으로 더듬어 확인하고 있다." width="1411" height="1058" loading="lazy">
+        <figcaption><b>손으로 익히는 규칙</b>경기 전, 테이블 구조를 손으로 먼저 익힙니다.</figcaption>
+      </figure>
+
+      <figure>
+        <img src="images/boardgame-1.jpg" alt="교실 책상에 네 명의 학생이 둘러앉아, 점자와 일반 글자가 함께 새겨진 흰색과 초록색 보드게임 타일을 늘어놓고 손끝으로 만지며 대화를 나누고 있다." width="1411" height="1058" loading="lazy">
+        <figcaption><b>베리어프리 보드게임</b>점자와 글자가 함께 새겨져 있어, 정보를 얻는 방법이 달라도 같이 즐길 수 있습니다.</figcaption>
+      </figure>
+
+      <figure>
+        <img src="images/boardgame-2.jpg" alt="교실에서 네 명의 학생이 긴 책상을 사이에 두고 마주 앉아 점자 타일 보드게임을 진행하고 있으며, 한 학생이 손끝으로 타일의 점자를 읽고 있다." width="1411" height="1058" loading="lazy">
+        <figcaption><b>같은 판, 다른 감각</b>보는 사람과 만지는 사람이 같은 규칙으로 겨룹니다.</figcaption>
+      </figure>
+    </div>
+
+    <p class="note">
+      사진 속 학생의 초상권 보호를 위해, 이 페이지를 외부에 공개하기 전에는
+      반드시 본인 및 보호자의 사전 동의를 확인해 주세요.
+    </p>
+  </div>
+</section>
+
+<!-- ══ 기대 효과 ═════════════════════════════════════ -->
+<section class="sec alt" id="impact" aria-labelledby="impact-h">
+  <div class="wrap">
+    <div class="sec-head">
+      <span class="sec-kicker">Impact</span>
+      <h2 id="impact-h">기대 효과</h2>
+    </div>
+    <div class="grid c2">
+      <article class="card">
+        <h3>라포 형성과 사회적 의사소통</h3>
+        <p>
+          서로의 다름을 이해하려는 공감 중심 프로그램을 통해 사회적 의사소통 참여 기회를 제공합니다.
+          개인 대 개인의 인식 개선에 머무르지 않고, <strong>사회적 장애 모델의 이해</strong>로 나아가
+          사회적 차별을 줄이는 데 기여하고자 합니다.
+        </p>
+      </article>
+      <article class="card">
+        <h3>협력적 문제 해결력</h3>
+        <p>
+          장애&middot;비장애 학생 간의 질문과 토론을 통한 협업 프로젝트로
+          공동체 구성원 사이의 협력적 문제 해결력을 높입니다.
+        </p>
+      </article>
+      <article class="card">
+        <h3>학교급 간 수업 공유 문화 확산</h3>
+        <p>
+          학생 참여형 문제해결 프로젝트를 통해 학업 역량과 학습 동기, 자기주도력을 이끌고
+          학교급 간 진로 연계 수업 공유 문화를 넓힙니다.
+        </p>
+      </article>
+      <article class="card">
+        <h3>지역사회와의 연계 강화</h3>
+        <p>
+          대전맹학교와 협업한 봉사 활동과 황톳길 플로깅을 통해
+          학생들이 지역사회의 일원으로서 정서적 공감대를 형성하는 계기를 마련합니다.
+        </p>
+      </article>
+    </div>
+  </div>
+</section>
+
+<!-- ══ 접근성 안내 ═══════════════════════════════════ -->
+<section class="sec" id="a11y" aria-labelledby="a11y-h">
+  <div class="wrap">
+    <div class="sec-head">
+      <span class="sec-kicker">Accessibility</span>
+      <h2 id="a11y-h">이 페이지의 접근성</h2>
+      <p>
+        시각장애 학생과 함께 만드는 프로젝트의 웹페이지인 만큼,
+        이 페이지 자체가 접근 가능해야 한다고 생각했습니다.
+        적용한 내용을 밝혀 둡니다.
+      </p>
+    </div>
+
+    <div class="grid c3">
+      <article class="card">
+        <h3>스크린리더</h3>
+        <ul>
+          <li>모든 이미지에 내용을 설명하는 대체 텍스트 제공</li>
+          <li>제목 단계(h1&ndash;h4)를 건너뛰지 않고 순차 구성</li>
+          <li>header &middot; nav &middot; main &middot; footer 등 의미 있는 영역 구분</li>
+          <li>표에 caption과 행&middot;열 머리글(scope) 지정</li>
+          <li>설정 변경 시 aria-live로 결과 안내</li>
+        </ul>
+      </article>
+      <article class="card">
+        <h3>키보드</h3>
+        <ul>
+          <li>맨 앞의 &lsquo;본문 바로가기&rsquo; 링크로 메뉴 건너뛰기</li>
+          <li>모든 기능을 마우스 없이 조작 가능</li>
+          <li>포커스 위치를 3px 굵기 테두리로 뚜렷하게 표시</li>
+          <li>모바일 메뉴는 Esc 키로 닫기</li>
+        </ul>
+      </article>
+      <article class="card">
+        <h3>저시력 &middot; 색각</h3>
+        <ul>
+          <li>글자 크기 3단계 조절 (최대 140&percnt;)</li>
+          <li>고대비 모드 &mdash; 흑백 기반으로 명도 대비 최대화</li>
+          <li>어두운 화면 모드 &middot; 시스템 설정 자동 반영</li>
+          <li>색만으로 정보를 전달하지 않음</li>
+          <li>설정은 브라우저에 저장되어 다음 방문에도 유지</li>
+        </ul>
+      </article>
+      <article class="card">
+        <h3>인지 &middot; 전정</h3>
+        <ul>
+          <li>&lsquo;동작 줄이기&rsquo; 시스템 설정을 존중해 애니메이션 최소화</li>
+          <li>자동 재생&middot;자동 전환 요소 없음</li>
+          <li>한 문단을 짧게, 어려운 용어는 풀어 설명</li>
+        </ul>
+      </article>
+      <article class="card">
+        <h3>인쇄 &middot; 배포</h3>
+        <ul>
+          <li>인쇄 시 메뉴&middot;버튼을 숨기고 본문만 출력</li>
+          <li>접힌 지도안도 인쇄물에는 모두 펼쳐 출력</li>
+          <li>외부 서버 연결 없이 단독 실행 (인터넷 없이도 열람 가능)</li>
+        </ul>
+      </article>
+      <article class="card">
+        <h3>더 나아지려면</h3>
+        <p>
+          점자정보단말기 사용자 검증, 실제 스크린리더(센스리더&middot;NVDA) 테스트,
+          음성 안내 추가는 아직 이루어지지 않았습니다.
+          맹학교 학생들의 직접 사용 후 피드백을 반영해 개선할 예정입니다.
+        </p>
+      </article>
+    </div>
+  </div>
+</section>
+
+</main>
+
+<!-- ══ 푸터 ══════════════════════════════════════════ -->
+<footer class="site">
+  <div class="wrap">
+    <div class="cols">
+      <div>
+        <h3>프로젝트</h3>
+        <p>
+          <strong>사람이 꽃보다 아름다워</strong><br>
+          2026학년도 장애인식개선 학생동아리<br>
+          시각장애 학생의 이해 및 장애 인식 개선을 위한<br>
+          대전맹학교 연계 진로 프로젝트
+        </p>
+      </div>
+      <div>
+        <h3>주최 &middot; 주관</h3>
+        <ul>
+          <li>대전대신고등학교</li>
+          <li>대전맹학교</li>
+          <li>담당 부서: 3학년부 &middot; 진학혁신부 &middot; 창의연구부</li>
+        </ul>
+      </div>
+      <div>
+        <h3>운영 기간</h3>
+        <ul>
+          <li>2026년 4월 &ndash; 12월</li>
+          <li>집중 운영: 7월 20일 &ndash; 8월 21일</li>
+          <li>연계 사업: 대전특수교육원 장애인식개선 학생동아리 공모</li>
+        </ul>
+      </div>
+    </div>
+    <p class="footer-bottom">
+      이 페이지는 프로젝트 운영 계획서와 학생 교육지도안을 바탕으로 제작한 내부 안내용 자료입니다.
+      학생 명단과 연락처 등 개인정보는 포함하지 않았습니다.
+      <br>
+      <a class="to-top" href="#top">맨 위로 돌아가기</a>
+    </p>
+  </div>
+</footer>
+
+<script>
+(function(){
+  "use strict";
+
+  /* ══════════════════════════════════════════════════
+     1. 화면 설정 (글자 크기 / 고대비 / 다크 모드)
+     ══════════════════════════════════════════════════ */
+  var root   = document.documentElement;
+  var status = document.getElementById('a11y-status');
+  var STEPS  = [0.9, 1, 1.15, 1.3, 1.4];
+  var stepIdx = 1;
+
+  function announce(msg){ if(status) status.textContent = msg; }
+  function store(k,v){ try{ localStorage.setItem(k,v); }catch(e){} }
+  function load(k){ try{ return localStorage.getItem(k); }catch(e){ return null; } }
+
+  function applyStep(){
+    root.style.setProperty('--step', STEPS[stepIdx]);
+    store('a11y-step', String(stepIdx));
+    announce('글자 크기 ' + Math.round(STEPS[stepIdx]*100) + '퍼센트');
+  }
+
+  document.getElementById('fs-up').addEventListener('click', function(){
+    if(stepIdx < STEPS.length-1){ stepIdx++; applyStep(); }
+    else announce('가장 큰 글자 크기입니다.');
+  });
+  document.getElementById('fs-down').addEventListener('click', function(){
+    if(stepIdx > 0){ stepIdx--; applyStep(); }
+    else announce('가장 작은 글자 크기입니다.');
+  });
+  document.getElementById('fs-reset').addEventListener('click', function(){
+    stepIdx = 1; applyStep();
+  });
+
+  var contrastBtn = document.getElementById('contrast-btn');
+  function applyContrast(on){
+    if(on) root.setAttribute('data-contrast','high');
+    else   root.removeAttribute('data-contrast');
+    contrastBtn.setAttribute('aria-pressed', on ? 'true' : 'false');
+    store('a11y-contrast', on ? 'high' : 'normal');
+    announce(on ? '고대비 모드를 켰습니다.' : '고대비 모드를 껐습니다.');
+  }
+  contrastBtn.addEventListener('click', function(){
+    applyContrast(root.getAttribute('data-contrast') !== 'high');
+  });
+
+  var themeBtn = document.getElementById('theme-btn');
+  function applyTheme(dark){
+    root.setAttribute('data-theme', dark ? 'dark' : 'light');
+    themeBtn.setAttribute('aria-pressed', dark ? 'true' : 'false');
+    themeBtn.textContent = dark ? '밝은 화면' : '어두운 화면';
+    store('a11y-theme', dark ? 'dark' : 'light');
+    announce(dark ? '어두운 화면으로 바꿨습니다.' : '밝은 화면으로 바꿨습니다.');
+  }
+  themeBtn.addEventListener('click', function(){
+    applyTheme(root.getAttribute('data-theme') !== 'dark');
+  });
+
+  /* 저장된 설정 복원 */
+  (function restore(){
+    var s = load('a11y-step');
+    if(s !== null && STEPS[+s] !== undefined){ stepIdx = +s; root.style.setProperty('--step', STEPS[stepIdx]); }
+    if(load('a11y-contrast') === 'high'){
+      root.setAttribute('data-contrast','high');
+      contrastBtn.setAttribute('aria-pressed','true');
+    }
+    var t = load('a11y-theme');
+    var prefersDark = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches;
+    var dark = t ? (t === 'dark') : prefersDark;
+    root.setAttribute('data-theme', dark ? 'dark' : 'light');
+    themeBtn.setAttribute('aria-pressed', dark ? 'true' : 'false');
+    themeBtn.textContent = dark ? '밝은 화면' : '어두운 화면';
+  })();
+
+  /* ══════════════════════════════════════════════════
+     2. 모바일 메뉴
+     ══════════════════════════════════════════════════ */
+  var navToggle = document.getElementById('nav-toggle');
+  var mainNav   = document.getElementById('main-nav');
+  function setNav(open){
+    mainNav.classList.toggle('open', open);
+    navToggle.setAttribute('aria-expanded', open ? 'true' : 'false');
+  }
+  navToggle.addEventListener('click', function(){
+    setNav(navToggle.getAttribute('aria-expanded') !== 'true');
+  });
+  mainNav.addEventListener('click', function(e){
+    if(e.target.tagName === 'A' && window.innerWidth <= 880) setNav(false);
+  });
+  document.addEventListener('keydown', function(e){
+    if(e.key === 'Escape' && navToggle.getAttribute('aria-expanded') === 'true'){
+      setNav(false); navToggle.focus();
+    }
+  });
+
+  /* ══════════════════════════════════════════════════
+     3. 현재 위치 표시 (스크롤 스파이)
+     ══════════════════════════════════════════════════ */
+  var navLinks = Array.prototype.slice.call(mainNav.querySelectorAll('a[href^="#"]'));
+  var sections = navLinks
+    .map(function(a){ return document.getElementById(a.getAttribute('href').slice(1)); })
+    .filter(Boolean);
+
+  if('IntersectionObserver' in window && sections.length){
+    var io = new IntersectionObserver(function(entries){
+      entries.forEach(function(en){
+        if(!en.isIntersecting) return;
+        navLinks.forEach(function(a){
+          var on = a.getAttribute('href') === '#' + en.target.id;
+          if(on) a.setAttribute('aria-current','true');
+          else   a.removeAttribute('aria-current');
+        });
+      });
+    }, { rootMargin: '-45% 0px -50% 0px', threshold: 0 });
+    sections.forEach(function(s){ io.observe(s); });
+  }
+
+  /* ══════════════════════════════════════════════════
+     4. 한글 → 훈맹정음(한글 점자) 변환
+        · 정자(正字) 표기 기준, 약자·약어 미적용
+        · 점 번호: 왼쪽 위부터 1,2,3 / 오른쪽 위부터 4,5,6
+     ══════════════════════════════════════════════════ */
+  var CHO = [
+    ['ㄱ',[[4]]],            ['ㄲ',[[6],[4]]],       ['ㄴ',[[1,4]]],
+    ['ㄷ',[[2,4]]],          ['ㄸ',[[6],[2,4]]],     ['ㄹ',[[5]]],
+    ['ㅁ',[[1,5]]],          ['ㅂ',[[4,5]]],         ['ㅃ',[[6],[4,5]]],
+    ['ㅅ',[[6]]],            ['ㅆ',[[6],[6]]],       ['ㅇ',[]],
+    ['ㅈ',[[4,6]]],          ['ㅉ',[[6],[4,6]]],     ['ㅊ',[[5,6]]],
+    ['ㅋ',[[1,2,4]]],        ['ㅌ',[[1,2,5]]],       ['ㅍ',[[1,4,5]]],
+    ['ㅎ',[[2,4,5]]]
+  ];
+  var JUNG = [
+    ['ㅏ',[[1,2,6]]],        ['ㅐ',[[1,2,3,5]]],
+    ['ㅑ',[[3,4,5]]],        ['ㅒ',[[3,4,5],[1,2,3,5]]],
+    ['ㅓ',[[2,3,4]]],        ['ㅔ',[[1,3,4,5]]],
+    ['ㅕ',[[1,5,6]]],        ['ㅖ',[[3,4]]],
+    ['ㅗ',[[1,3,6]]],        ['ㅘ',[[1,2,3,6]]],
+    ['ㅙ',[[1,2,3,6],[1,2,3,5]]], ['ㅚ',[[1,3,4,5,6]]],
+    ['ㅛ',[[3,4,6]]],        ['ㅜ',[[1,3,4]]],
+    ['ㅝ',[[1,2,3,4]]],      ['ㅞ',[[1,2,3,4],[1,2,3,5]]],
+    ['ㅟ',[[1,3,4],[1,3,5]]],['ㅠ',[[1,4,6]]],
+    ['ㅡ',[[2,4,6]]],        ['ㅢ',[[2,4,5,6]]],
+    ['ㅣ',[[1,3,5]]]
+  ];
+  var JONG = [
+    ['',[]],
+    ['ㄱ',[[1]]],            ['ㄲ',[[1],[1]]],       ['ㄳ',[[1],[3]]],
+    ['ㄴ',[[2,5]]],          ['ㄵ',[[2,5],[1,3]]],   ['ㄶ',[[2,5],[3,5,6]]],
+    ['ㄷ',[[3,5]]],          ['ㄹ',[[2]]],           ['ㄺ',[[2],[1]]],
+    ['ㄻ',[[2],[2,6]]],      ['ㄼ',[[2],[1,2]]],     ['ㄽ',[[2],[3]]],
+    ['ㄾ',[[2],[2,3,6]]],    ['ㄿ',[[2],[2,5,6]]],   ['ㅀ',[[2],[3,5,6]]],
+    ['ㅁ',[[2,6]]],          ['ㅂ',[[1,2]]],         ['ㅄ',[[1,2],[3]]],
+    ['ㅅ',[[3]]],            ['ㅆ',[[3,4]]],         ['ㅇ',[[2,3,5,6]]],
+    ['ㅈ',[[1,3]]],          ['ㅊ',[[2,3]]],         ['ㅋ',[[2,3,5]]],
+    ['ㅌ',[[2,3,6]]],        ['ㅍ',[[2,5,6]]],       ['ㅎ',[[3,5,6]]]
+  ];
+
+  var DOT_BIT = {1:1, 2:2, 3:4, 4:8, 5:16, 6:32};
+  function toUnicode(dots){
+    var mask = 0;
+    for(var i=0;i<dots.length;i++) mask |= DOT_BIT[dots[i]];
+    return String.fromCharCode(0x2800 + mask);
+  }
+
+  /* 점자 셀 DOM 생성 — 순서: 1,4 / 2,5 / 3,6 (그리드 좌우 배치) */
+  function cellEl(dots){
+    var order = [1,4,2,5,3,6];
+    var el = document.createElement('span');
+    el.className = 'bcell';
+    el.setAttribute('aria-hidden','true');
+    for(var i=0;i<order.length;i++){
+      var d = document.createElement('i');
+      d.className = 'bdot' + (dots.indexOf(order[i]) > -1 ? ' on' : '');
+      el.appendChild(d);
+    }
+    return el;
+  }
+
+  /* 한 음절을 [{jamo, cells:[[dots],...]}] 로 분해 */
+  function decompose(ch){
+    var code = ch.charCodeAt(0);
+    if(code < 0xAC00 || code > 0xD7A3) return null;
+    var idx = code - 0xAC00;
+    var cho  = Math.floor(idx / 588);
+    var jung = Math.floor((idx % 588) / 28);
+    var jong = idx % 28;
+    return [
+      { jamo: CHO[cho][0],  cells: CHO[cho][1],  role: '초성' },
+      { jamo: JUNG[jung][0], cells: JUNG[jung][1], role: '중성' },
+      { jamo: JONG[jong][0], cells: JONG[jong][1], role: '종성' }
+    ].filter(function(p){ return p.cells.length > 0; });
+  }
+
+  var input   = document.getElementById('braille-input');
+  var output  = document.getElementById('braille-output');
+  var uniLine = document.getElementById('braille-unicode');
+
+  function render(){
+    var text = input.value.slice(0, 40);
+    output.textContent = '';
+    var uni = '';
+
+    if(!text.trim()){
+      var empty = document.createElement('p');
+      empty.style.color = 'var(--ink-3)';
+      empty.textContent = '한글을 입력하면 점자 표기가 여기에 나타납니다.';
+      output.appendChild(empty);
+      uniLine.textContent = '';
+      uniLine.setAttribute('aria-label','표기할 내용이 없습니다.');
+      return;
+    }
+
+    for(var i=0;i<text.length;i++){
+      var ch = text[i];
+
+      if(ch === ' '){ uni += ' '; continue; }
+
+      var parts = decompose(ch);
+      var box = document.createElement('div');
+      box.className = 'syl';
+
+      var ko = document.createElement('div');
+      ko.className = 'ko';
+      ko.textContent = ch;
+      box.appendChild(ko);
+
+      var cells = document.createElement('div');
+      cells.className = 'cells';
+
+      if(parts){
+        var labels = [];
+        parts.forEach(function(p){
+          labels.push(p.jamo);
+          p.cells.forEach(function(dots){
+            cells.appendChild(cellEl(dots));
+            uni += toUnicode(dots);
+          });
+        });
+        var meta = document.createElement('div');
+        meta.className = 'parts';
+        meta.textContent = labels.join(' + ');
+        box.appendChild(cells);
+        box.appendChild(meta);
+        box.setAttribute('aria-label', ch + ', ' + labels.join(', '));
+      }else{
+        var note = document.createElement('div');
+        note.className = 'parts';
+        note.textContent = '한글 음절만 변환됩니다';
+        box.appendChild(cells);
+        box.appendChild(note);
+        box.setAttribute('aria-label', ch + ', 변환 대상 아님');
+        uni += ch;
+      }
+      output.appendChild(box);
+    }
+
+    uniLine.textContent = uni;
+    uniLine.setAttribute('aria-label', '유니코드 점자 표기: ' + uni);
+  }
+
+  input.addEventListener('input', render);
+  Array.prototype.forEach.call(document.querySelectorAll('.chip'), function(btn){
+    btn.addEventListener('click', function(){
+      input.value = btn.getAttribute('data-word');
+      render();
+      input.focus();
+    });
+  });
+  render();
+
+  /* 자모 대조표 */
+  function buildChart(containerId, list, skipEmpty){
+    var box = document.getElementById(containerId);
+    if(!box) return;
+    list.forEach(function(entry){
+      var jamo = entry[0], cells = entry[1];
+      if(skipEmpty && cells.length === 0) return;
+      var item = document.createElement('div');
+      item.className = 'jamo';
+
+      var j = document.createElement('div');
+      j.className = 'j';
+      j.textContent = jamo;
+      item.appendChild(j);
+
+      var wrap = document.createElement('div');
+      wrap.className = 'cells';
+      var nums = [];
+      cells.forEach(function(dots){
+        wrap.appendChild(cellEl(dots));
+        nums.push(dots.join('-'));
+      });
+      item.appendChild(wrap);
+      item.setAttribute('role','listitem');
+      item.setAttribute('aria-label', jamo + ', ' + nums.join(' 그리고 ') + '번 점');
+      box.appendChild(item);
+    });
+    box.setAttribute('role','list');
+  }
+  buildChart('jamo-initial', CHO, true);
+  buildChart('jamo-vowel',  JUNG, false);
+
+  /* ══════════════════════════════════════════════════
+     5. 인쇄 시 접힌 지도안을 모두 펼침 (인쇄 후 원상 복구)
+     ══════════════════════════════════════════════════ */
+  (function(){
+    var reopened = [];
+    function expand(){
+      reopened = [];
+      Array.prototype.forEach.call(document.querySelectorAll('details.doc'), function(d){
+        if(!d.open){ d.open = true; reopened.push(d); }
+      });
+    }
+    function collapse(){
+      reopened.forEach(function(d){ d.open = false; });
+      reopened = [];
+    }
+    if(window.matchMedia){
+      var mq = window.matchMedia('print');
+      var handler = function(e){ e.matches ? expand() : collapse(); };
+      if(mq.addEventListener) mq.addEventListener('change', handler);
+      else if(mq.addListener) mq.addListener(handler);
+    }
+    window.addEventListener('beforeprint', expand);
+    window.addEventListener('afterprint', collapse);
+  })();
+
+  /* 히어로 장식 점자 — '사람' */
+  (function(){
+    var strip = document.getElementById('hero-braille');
+    if(!strip) return;
+    '사람'.split('').forEach(function(ch){
+      var parts = decompose(ch);
+      if(!parts) return;
+      parts.forEach(function(p){
+        p.cells.forEach(function(dots){
+          var c = cellEl(dots);
+          c.classList.add('hero-cell');
+          strip.appendChild(c);
+        });
+      });
+      var gap = document.createElement('span');
+      gap.style.width = '.6rem';
+      strip.appendChild(gap);
+    });
+  })();
+
+})();
+</script>
+
+<!-- live-reload: 로컬 미리보기(localhost)에서만 동작합니다.
+     배포본에서는 조건에 걸려 실행되지 않으므로 그대로 두어도 무방합니다. -->
+<script>
+(function(){
+  var h = location.hostname;
+  if (h !== 'localhost' && h !== '127.0.0.1') return;
+  var last = null, failed = 0;
+  setInterval(function(){
+    fetch(location.pathname + '?_=' + Date.now(), { method: 'HEAD', cache: 'no-store' })
+      .then(function(r){
+        failed = 0;
+        var t = r.headers.get('last-modified');
+        if (!t) return;
+        if (last && t !== last) {
+          try { sessionStorage.setItem('_scroll', String(window.scrollY)); } catch(e){}
+          location.reload();
+        }
+        last = t;
+      })
+      .catch(function(){ failed++; });
+  }, 1200);
+  window.addEventListener('load', function(){
+    try {
+      var y = sessionStorage.getItem('_scroll');
+      if (y !== null) { window.scrollTo(0, parseInt(y, 10)); sessionStorage.removeItem('_scroll'); }
+    } catch(e){}
+  });
+})();
+</script>
+
+<!-- ══ 동화책 뷰어 ═══════════════════════════════════ -->
+<div class="reader" id="reader" hidden role="dialog" aria-modal="true" aria-labelledby="reader-title">
+  <div class="reader-bar">
+    <h2 id="reader-title">동화책</h2>
+    <span class="count" id="reader-count"></span>
+    <button type="button" class="reader-close" id="reader-close">닫기 (Esc)</button>
+  </div>
+  <div class="reader-stage" id="reader-stage">
+    <img id="reader-img" alt="">
+    <div class="page-text" id="reader-text"></div>
+  </div>
+  <div class="reader-nav">
+    <button type="button" id="reader-prev">&larr; 이전 쪽</button>
+    <span class="jump">
+      <label for="reader-jump">쪽 이동</label>
+      <input type="number" id="reader-jump" min="1" value="1">
+    </span>
+    <button type="button" id="reader-next">다음 쪽 &rarr;</button>
+  </div>
+  <p class="sr-only" role="status" aria-live="polite" id="reader-status"></p>
+</div>
+
+
+<!-- 동화책 뷰어: books.json 을 불러오지 못하면(단일 파일 배포본 등) 버튼을 숨깁니다. -->
+<script>
+(function(){
+  "use strict";
+  var reader  = document.getElementById('reader');
+  if (!reader) return;
+  var titleEl = document.getElementById('reader-title'),
+      countEl = document.getElementById('reader-count'),
+      imgEl   = document.getElementById('reader-img'),
+      textEl  = document.getElementById('reader-text'),
+      stage   = document.getElementById('reader-stage'),
+      prevBtn = document.getElementById('reader-prev'),
+      nextBtn = document.getElementById('reader-next'),
+      jumpEl  = document.getElementById('reader-jump'),
+      closeBtn= document.getElementById('reader-close'),
+      statusEl= document.getElementById('reader-status');
+
+  var DATA = null, cur = null, idx = 0, opener = null;
+
+  function hideButtons(){
+    Array.prototype.forEach.call(document.querySelectorAll('.read-btn'), function(b){ b.hidden = true; });
+  }
+
+  fetch('books.json', { cache: 'no-store' })
+    .then(function(r){ if(!r.ok) throw 0; return r.json(); })
+    .then(function(j){ DATA = j; })
+    .catch(function(){ hideButtons(); });
+
+  function render(){
+    var b = DATA[cur], pg = b.pages[idx];
+    imgEl.src = 'images/books/pages/' + cur + '/' + pg.f;
+    countEl.textContent = (idx + 1) + ' / ' + b.pages.length + '쪽';
+    jumpEl.max = b.pages.length;
+    jumpEl.value = idx + 1;
+    prevBtn.disabled = (idx === 0);
+    nextBtn.disabled = (idx === b.pages.length - 1);
+
+    var t = (pg.t || '').trim();
+    if (t) {
+      textEl.className = 'page-text';
+      textEl.textContent = t;
+      imgEl.alt = b.title + ' ' + (idx+1) + '쪽 그림. 본문: ' + t;
+    } else {
+      textEl.className = 'page-text none';
+      textEl.textContent = '이 쪽은 글이 그림 안에 그려져 있어 따로 읽어 드릴 글이 없습니다. 그림 속 문장을 확인해 주세요.';
+      imgEl.alt = b.title + ' ' + (idx+1) + '쪽. 글이 그림 안에 포함된 쪽입니다.';
+    }
+    stage.scrollTop = 0;
+    statusEl.textContent = b.title + ' ' + (idx+1) + '쪽. ' + (t ? t : '글이 그림 안에 있는 쪽입니다.');
+
+    // 다음 쪽 미리 받아두기
+    if (idx + 1 < b.pages.length) {
+      var pre = new Image();
+      pre.src = 'images/books/pages/' + cur + '/' + b.pages[idx+1].f;
+    }
+  }
+
+  function open(slug, btn){
+    if (!DATA || !DATA[slug]) return;
+    cur = slug; idx = 0; opener = btn || null;
+    titleEl.textContent = DATA[slug].title;
+    reader.hidden = false;
+    document.body.style.overflow = 'hidden';
+    render();
+    closeBtn.focus();
+  }
+  function close(){
+    reader.hidden = true;
+    document.body.style.overflow = '';
+    imgEl.removeAttribute('src');
+    if (opener) opener.focus();
+  }
+  function go(n){
+    if (!cur) return;
+    var max = DATA[cur].pages.length - 1;
+    idx = Math.max(0, Math.min(max, n));
+    render();
+  }
+
+  document.addEventListener('click', function(e){
+    var b = e.target.closest ? e.target.closest('.read-btn') : null;
+    if (b) { open(b.getAttribute('data-open'), b); }
+  });
+  prevBtn.addEventListener('click', function(){ go(idx - 1); });
+  nextBtn.addEventListener('click', function(){ go(idx + 1); });
+  closeBtn.addEventListener('click', close);
+  jumpEl.addEventListener('change', function(){ go((parseInt(jumpEl.value, 10) || 1) - 1); });
+
+  document.addEventListener('keydown', function(e){
+    if (reader.hidden) return;
+    if (e.key === 'Escape'){ e.preventDefault(); close(); }
+    else if (e.key === 'ArrowRight'){ if(document.activeElement !== jumpEl){ e.preventDefault(); go(idx + 1);} }
+    else if (e.key === 'ArrowLeft'){ if(document.activeElement !== jumpEl){ e.preventDefault(); go(idx - 1);} }
+    else if (e.key === 'Tab'){
+      // 포커스 가두기
+      var f = reader.querySelectorAll('button:not([disabled]), input');
+      if (!f.length) return;
+      var first = f[0], last = f[f.length - 1];
+      if (e.shiftKey && document.activeElement === first){ e.preventDefault(); last.focus(); }
+      else if (!e.shiftKey && document.activeElement === last){ e.preventDefault(); first.focus(); }
+    }
+  });
+})();
+</script>
+</body>
+</html>

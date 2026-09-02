@@ -1,0 +1,16 @@
+# OS / 편집기
+Thumbs.db
+desktop.ini
+.DS_Store
+*.tmp
+*~
+
+# 작업용 임시 산출물
+_opt/
+_shot-*.html
+
+# 상위 프로젝트 폴더의 문서는 이 저장소에 포함하지 않습니다.
+# (학생 명단·연락처가 담긴 hwp/hwpx/zip 등)
+*.hwp
+*.hwpx
+*.zip
