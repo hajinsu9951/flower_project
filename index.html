@@ -531,6 +531,7 @@ footer.site li{margin-bottom:.4em}
         <li><a href="#books">동화책</a></li>
         <li><a href="#lesson">교육지도안</a></li>
         <li><a href="#gallery">활동 기록</a></li>
+        <li><a href="#poster">캠페인 포스터</a></li>
         <li><a href="#a11y">접근성</a></li>
       </ul>
     </nav>
@@ -628,6 +629,18 @@ footer.site li{margin-bottom:.4em}
 </section>
 
 <!-- ══ 프로그램 ══════════════════════════════════════ -->
+<style>
+  /* 프로그램 카드 운영 표시 — ○ 운영 완료 / △ 부분 운영 */
+  #programs .card { position: relative; }
+  #programs .prog-mark {
+    position: absolute; top: .55rem; right: .8rem;
+    font-size: 2.6rem; line-height: 1; font-weight: 700;
+    color: currentColor; opacity: .13;
+    pointer-events: none; user-select: none;
+  }
+  @media (max-width: 640px){ #programs .prog-mark { font-size: 2rem; } }
+</style>
+
 <section class="sec alt" id="programs" aria-labelledby="programs-h">
   <div class="wrap">
     <div class="sec-head">
@@ -639,6 +652,7 @@ footer.site li{margin-bottom:.4em}
     <div class="grid c2">
 
       <article class="card">
+        <span class="prog-mark" role="img" aria-label="부분 운영">△</span>
         <span class="tag clay">체험 &middot; 생태</span>
         <h3>계족산 황톳길 걷기 프로젝트</h3>
         <p>
@@ -654,6 +668,7 @@ footer.site li{margin-bottom:.4em}
       </article>
 
       <article class="card">
+        <span class="prog-mark" role="img" aria-label="운영 완료">○</span>
         <span class="tag">학습 &middot; 수학</span>
         <h3>10시 1반(십시일반) 수학 아카이브</h3>
         <p>
@@ -670,6 +685,7 @@ footer.site li{margin-bottom:.4em}
       </article>
 
       <article class="card">
+        <span class="prog-mark" role="img" aria-label="운영 완료">○</span>
         <span class="tag gold">진로</span>
         <h3>함께 하는 진로&middot;진학 개선 프로그램</h3>
         <p>
@@ -684,6 +700,7 @@ footer.site li{margin-bottom:.4em}
       </article>
 
       <article class="card">
+        <span class="prog-mark" role="img" aria-label="운영 완료">○</span>
         <span class="tag">문화 &middot; 창작</span>
         <h3>Audio Book Garden</h3>
         <p>
@@ -700,6 +717,7 @@ footer.site li{margin-bottom:.4em}
       </article>
 
       <article class="card">
+        <span class="prog-mark" role="img" aria-label="부분 운영">△</span>
         <span class="tag clay">예술</span>
         <h3>아트 콜라보레이션</h3>
         <p>
@@ -715,6 +733,7 @@ footer.site li{margin-bottom:.4em}
       </article>
 
       <article class="card">
+        <span class="prog-mark" role="img" aria-label="운영 완료">○</span>
         <span class="tag gold">실천 &middot; 출판</span>
         <h3>다시봄 &mdash; Book 시리즈</h3>
         <p>
@@ -1211,8 +1230,53 @@ footer.site li{margin-bottom:.4em}
   </div>
 </section>
 
+<!-- ══ 캠페인 포스터 ═════════════════════════════════ -->
+<section class="sec alt" id="poster" aria-labelledby="poster-h">
+  <div class="wrap">
+    <div class="sec-head">
+      <span class="sec-kicker">Campaign</span>
+      <h2 id="poster-h">학생이 만든 캠페인 포스터</h2>
+      <p>
+        동아리 학생들이 직접 메시지를 정하고 만든 교내 캠페인 포스터 세 종입니다.
+        인식편&middot;언어편&middot;실천편으로 나누어, 2026년 11월 교내 곳곳에 붙였습니다.
+        A2(420 &times; 594 mm) 인쇄용 PDF를 함께 공개하니 필요하신 학교에서 자유롭게 내려받아 쓰실 수 있습니다.
+      </p>
+    </div>
+
+    <div class="gallery">
+      <figure>
+        <img src="images/campaign2026.jpg" alt="학교 현관 앞 계단에 동아리 학생 열여섯 명이 한 줄로 서서, 각자 완성한 장애인식개선 캠페인 포스터를 가슴 앞에 들고 웃으며 사진을 찍고 있다. 양옆에는 노란 국화 화분이 놓여 있다." width="1800" height="1350" loading="lazy">
+        <figcaption><b>교내 캠페인 시작일</b>세 종의 포스터를 직접 들고 선 동아리 학생들입니다.</figcaption>
+      </figure>
+    </div>
+
+    <div class="gallery">
+      <figure>
+        <img src="images/poster1.jpg" alt="포스터 1. 크림색 바탕에 교복 입은 고등학생 세 명이 나란히 서서 이야기를 나눈다. 한 명은 휠체어에 앉아 있고, 한 명은 색 안경을 쓰고 흰지팡이를 짚었으며, 한 명은 서 있다. 아래에는 &lsquo;먼저, 사람입니다&rsquo;라는 큰 글씨가 있다." width="900" height="1273" loading="lazy">
+        <figcaption><b>1 &middot; 인식편 &mdash; 먼저, 사람입니다</b>장애는 한 사람의 일부일 뿐입니다. 휠체어도 흰지팡이도 그 사람을 설명하는 전부가 아닙니다. <a href="posters/A2_p1_%EB%A8%BC%EC%A0%80%EC%82%AC%EB%9E%8C%EC%9E%85%EB%8B%88%EB%8B%A4.pdf">A2 인쇄용 PDF 내려받기</a></figcaption>
+      </figure>
+
+      <figure>
+        <img src="images/poster2.jpg" alt="포스터 2. 산호색 바탕에 교복 입은 두 학생이 마주 보고 있다. 위쪽 흐린 말풍선 속 &lsquo;장애우&rsquo;에는 가위표가 그어져 있고, 아래 흰 말풍선 속 &lsquo;장애인&rsquo;에는 초록 체크 표시가 붙어 있다. 아래에는 &lsquo;말이 사람을 만듭니다&rsquo;라는 큰 글씨가 있다." width="900" height="1273" loading="lazy">
+        <figcaption><b>2 &middot; 언어편 &mdash; 말이 사람을 만듭니다</b>&lsquo;장애우&rsquo;는 동정이 담긴 말입니다. &lsquo;장애인&rsquo;이라고 불러 주세요. <a href="posters/A2_p2_%EB%A7%90%EC%9D%B4%EC%82%AC%EB%9E%8C%EC%9D%84%EB%A7%8C%EB%93%AD%EB%8B%88%EB%8B%A4.pdf">A2 인쇄용 PDF 내려받기</a></figcaption>
+      </figure>
+
+      <figure>
+        <img src="images/poster3.jpg" alt="포스터 3. 짙은 남색 바탕을 가로지르는 노란 점자블록 길 위를 흰지팡이를 짚은 사람이 걸어가고, 길 밖 옆쪽에 가방과 킥보드가 놓여 있다. 아래에는 &lsquo;노란 길을 비워 주세요&rsquo;라는 큰 글씨가 있다." width="900" height="1273" loading="lazy">
+        <figcaption><b>3 &middot; 실천편 &mdash; 노란 길을 비워 주세요</b>점자블록은 장식이 아니라, 누군가의 유일한 길입니다. <a href="posters/A2_p3_%EB%85%B8%EB%9E%80%EA%B8%B8%EC%9D%84%EB%B9%84%EC%9B%8C%EC%A3%BC%EC%84%B8%EC%9A%94.pdf">A2 인쇄용 PDF 내려받기</a></figcaption>
+      </figure>
+    </div>
+
+    <p class="note">
+      포스터의 표현은 &lsquo;장애인복지법&rsquo;과 국립국어원&middot;보건복지부의 장애인 관련 바른 표현 권고를 따랐습니다.
+      (장애우&middot;정상인&middot;장애를 앓다 등의 표현은 쓰지 않았습니다.)
+      사진 속 학생의 초상권 보호를 위해, 외부 공개 전에는 본인 및 보호자의 사전 동의를 확인해 주세요.
+    </p>
+  </div>
+</section>
+
 <!-- ══ 기대 효과 ═════════════════════════════════════ -->
-<section class="sec alt" id="impact" aria-labelledby="impact-h">
+<section class="sec" id="impact" aria-labelledby="impact-h">
   <div class="wrap">
     <div class="sec-head">
       <span class="sec-kicker">Impact</span>
@@ -1253,7 +1317,7 @@ footer.site li{margin-bottom:.4em}
 </section>
 
 <!-- ══ 접근성 안내 ═══════════════════════════════════ -->
-<section class="sec" id="a11y" aria-labelledby="a11y-h">
+<section class="sec alt" id="a11y" aria-labelledby="a11y-h">
   <div class="wrap">
     <div class="sec-head">
       <span class="sec-kicker">Accessibility</span>
@@ -1714,35 +1778,6 @@ footer.site li{margin-bottom:.4em}
 })();
 </script>
 
-<!-- live-reload: 로컬 미리보기(localhost)에서만 동작합니다.
-     배포본에서는 조건에 걸려 실행되지 않으므로 그대로 두어도 무방합니다. -->
-<script>
-(function(){
-  var h = location.hostname;
-  if (h !== 'localhost' && h !== '127.0.0.1') return;
-  var last = null, failed = 0;
-  setInterval(function(){
-    fetch(location.pathname + '?_=' + Date.now(), { method: 'HEAD', cache: 'no-store' })
-      .then(function(r){
-        failed = 0;
-        var t = r.headers.get('last-modified');
-        if (!t) return;
-        if (last && t !== last) {
-          try { sessionStorage.setItem('_scroll', String(window.scrollY)); } catch(e){}
-          location.reload();
-        }
-        last = t;
-      })
-      .catch(function(){ failed++; });
-  }, 1200);
-  window.addEventListener('load', function(){
-    try {
-      var y = sessionStorage.getItem('_scroll');
-      if (y !== null) { window.scrollTo(0, parseInt(y, 10)); sessionStorage.removeItem('_scroll'); }
-    } catch(e){}
-  });
-})();
-</script>
 
 <!-- ══ 동화책 뷰어 ═══════════════════════════════════ -->
 <div class="reader" id="reader" hidden role="dialog" aria-modal="true" aria-labelledby="reader-title">
